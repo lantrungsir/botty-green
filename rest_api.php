@@ -4,7 +4,7 @@
         protected $endpoint ="";
         protected $params = array();
         protected $file = Null;
-        protected $my_Token = "EAAB9aWid8uQBAKaQIvcgYO6ZABRba98lGgxOOuRzFGxda1gguxx9ODiGypZAyFQ0ZAs42NKhCB2R94EZAKW92jIGcToZAlHoyCJk58tF4sNvVUupe8ZAwHJvjSNubAfgVIZAfXEE8Cq0498KhPRbZC4o2jeHPWZA0xGMn5HiVJ4cg4QZDZD";
+        protected $myToken = "EAAB9aWid8uQBAKaQIvcgYO6ZABRba98lGgxOOuRzFGxda1gguxx9ODiGypZAyFQ0ZAs42NKhCB2R94EZAKW92jIGcToZAlHoyCJk58tF4sNvVUupe8ZAwHJvjSNubAfgVIZAfXEE8Cq0498KhPRbZC4o2jeHPWZA0xGMn5HiVJ4cg4QZDZD";
         private function __construct(){
             $this->_input();
         }
