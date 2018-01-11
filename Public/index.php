@@ -14,6 +14,7 @@ class WebhookVerify extends rest{
             if($mode == "subscribe" and $token_verify == $this->myToken){
                 header("HTTP 1.1 200 OK");
                 header("Content-type : Application/json");
+                http_response_code(200);
                 echo "200 OK";
             }
         }
