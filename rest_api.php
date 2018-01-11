@@ -5,7 +5,7 @@
         protected $params = array();
         protected $file = Null;
         
-        private function __construct(){
+        public function __construct(){
             $this->_input();
             $this->_process();
         }
