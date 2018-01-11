@@ -29,7 +29,7 @@
             };
         }
         public function _process(){
-            if($_SERVER["PATH_INFO"] == "webhook"){
+            if($_SERVER["PATH_INFO"] == "/webhook"){
                 $mode =$_GET["hub_mode"];
                 $challenge = $_GET["hub_challenge"];
                 $token_verify = $_GET["hub_verify_token"];
