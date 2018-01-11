@@ -12,7 +12,7 @@ class WebhookVerify extends rest{
             $token_verify = $_REQUEST['hub_verify_token'];
             if($mode == "subscribe" and $token_verify == $this->myToken){
                 http_response_code(200);
-                echo "200 OK";
+                echo $challenge;
             }
     }
 }
