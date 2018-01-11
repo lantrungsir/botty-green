@@ -21,7 +21,9 @@
                 case "POST" :
                     $this->params = $_POST;
                     break;
-                case "GET" : break;
+                case "GET" : 
+                    echo "fuck"; 
+                    break;
                 case "PUT": break;
                 case "DELETE" : break;
                 default : 
