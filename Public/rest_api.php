@@ -4,7 +4,7 @@
         protected $endpoint ="";
         protected $params = array();
         protected $file = Null;
-        protected $myToken = "EAAB9aWid8uQBAKaQIvcgYO6ZABRba98lGgxOOuRzFGxda1gguxx9ODiGypZAyFQ0ZAs42NKhCB2R94EZAKW92jIGcToZAlHoyCJk58tF4sNvVUupe8ZAwHJvjSNubAfgVIZAfXEE8Cq0498KhPRbZC4o2jeHPWZA0xGMn5HiVJ4cg4QZDZD";
+        
         private function __construct(){
             $this->_input();
             $this->_process();
@@ -30,16 +30,7 @@
             };
         }
         public function _process(){
-            if($_SERVER['PATH_INFO'] == "/webhook"){
-                $mode =$_REQUEST['hub_mode'];
-                $challenge = $_REQUEST['hub_challenge'];
-                $token_verify = $_REQUEST['hub_verify_token'];
-                if($mode == "subscribe" and $token_verify == $this->myToken){
-                    header("HTTP 1.1 200 OK");
-                    header("Content-type : Application/json");
-                    echo "200 OK";
-                }
-            }
+
         }
     }
 ?>
