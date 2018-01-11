@@ -33,7 +33,7 @@
                 $mode =$_GET["hub_mode"];
                 $challenge = $_GET["hub_challenge"];
                 $token_verify = $_GET["hub_verify_token"];
-                if($mode = "subscribe" and $token_verify = $this->myToken){
+                if($mode == "subscribe" and $token_verify == $this->myToken){
                     header("HTTP 1.1 200 OK");
                     header("Content-type : Application/json");
                 }
