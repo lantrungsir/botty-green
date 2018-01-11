@@ -29,13 +29,14 @@
             };
         }
         public function _process(){
-            if($_SERVER["PATH_INFO"] == "/webhook"){
-                $mode =$_GET["hub_mode"];
-                $challenge = $_GET["hub_challenge"];
-                $token_verify = $_GET["hub_verify_token"];
+            if($_SERVER['PATH_INFO'] == "/webhook"){
+                $mode =$_REQUEST['hub_mode'];
+                $challenge = $_REQUEST['hub_challenge'];
+                $token_verify = $_REQUEST['hub_verify_token'];
                 if($mode == "subscribe" and $token_verify == $this->myToken){
                     header("HTTP 1.1 200 OK");
                     header("Content-type : Application/json");
+                    echo "200 OK";
                 }
             }
         }
