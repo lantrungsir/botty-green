@@ -7,7 +7,6 @@ class WebhookVerify extends rest{
     protected $myToken = "EAAB9aWid8uQBAKaQIvcgYO6ZABRba98lGgxOOuRzFGxda1gguxx9ODiGypZAyFQ0ZAs42NKhCB2R94EZAKW92jIGcToZAlHoyCJk58tF4sNvVUupe8ZAwHJvjSNubAfgVIZAfXEE8Cq0498KhPRbZC4o2jeHPWZA0xGMn5HiVJ4cg4QZDZD";
     function __construct(){
         parent::__construct();            
-        if($_SERVER['PATH_INFO'] == "/webhook"){
             $mode =$_REQUEST['hub_mode'];
             $challenge = $_REQUEST['hub_challenge'];
             $token_verify = $_REQUEST['hub_verify_token'];
@@ -17,7 +16,6 @@ class WebhookVerify extends rest{
                 http_response_code(200);
                 echo "200 OK";
             }
-        }
     }
 }
 $webhook = new WebhookVerify();
