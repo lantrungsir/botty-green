@@ -1,53 +1,15 @@
-
+<h1>BẢNG THỐNG KÊ TƯƠNG TÁC VỚI GART 6520</h1>
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
-function request($url)
-{
-  
-}
-
-
 //start checking
 class WebhookVerify {
     protected $myToken = "EAAB9aWid8uQBAEXAwDotGNHVaBhxSJD4L6PklOsgR7ITBZA9M4iJK4k4IjTQhKZCD4KlcaCRWA5djLjPqHEEoIMNE53gWeeuYyfk4PTliFo1oTxuk1kdldgP77ENMkoqmtDBsWwy7PrZB25iDEaZAyYvgWxXnNNQ9xTPOeMQyZCysxfhrig8LpFhvLSZBF8zXeCdl2DfQgpAZDZD";
     protected $method ="";
     protected $endpoint ="";
-    protected $params = array();
-    protected $file = Null;
 function __construct(){         
     $this->_input();   
 }
-public function  request($url){
-    if ( ! filter_var($url, FILTER_VALIDATE_URL)) {
-        return false;
-      }
-      
-      $options = array(
-        CURLOPT_URL            => $url,
-        CURLOPT_RETURNTRANSFER => TRUE,
-        CURLOPT_HEADER         => FALSE,
-        CURLOPT_FOLLOWLOCATION => TRUE,
-        CURLOPT_ENCODING       => '',
-        CURLOPT_USERAGENT      => 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.87 Safari/537.36',
-        CURLOPT_AUTOREFERER    => TRUE,
-        CURLOPT_CONNECTTIMEOUT => 15,
-        CURLOPT_TIMEOUT        => 15,
-        CURLOPT_MAXREDIRS      => 5,
-        CURLOPT_SSL_VERIFYHOST => 2,
-        CURLOPT_SSL_VERIFYPEER => 0
-      );
-    
-      $ch = curl_init();
-      curl_setopt_array($ch, $options);
-      $response = curl_exec($ch);
-      $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-      curl_close($ch);
-      unset($options);
-      return $http_code === 200 ? $response : FALSE;
-}
 public function _input(){
-    $this->params = explode("/", trim($_SERVER["PATH_INFO"],"/")) ;
-    $this->endpoint = array_shift($this->params);
     $method = $_SERVER["REQUEST_METHOD"];
     $AllowMethod = array("POST","GET", "DELETE","PUT");
     if(in_array($method, $AllowMethod)){
@@ -158,7 +120,7 @@ public function _input(){
                        }
                     }
                    echo $comment;
-                   echo $this->request('https://graph.facebook.com/' . urlencode($newestFeed_id) . '/comments?method=post&message=' . urlencode($comment) . '&access_token=' . tok);
+                   $this->request('https://graph.facebook.com/' . urlencode($newestFeed_id) . '/comments?method=post&message=' . urlencode($comment) . '&access_token=' . tok);
                }
                 break;
         case "PUT": break;
@@ -168,7 +130,35 @@ public function _input(){
             break;
     };
 }
+public function request($url)
+{
+  if ( ! filter_var($url, FILTER_VALIDATE_URL)) {
+    return FALSE;
+  }
+  
+  $options = array(
+    CURLOPT_URL            => $url,
+    CURLOPT_RETURNTRANSFER => TRUE,
+    CURLOPT_HEADER         => FALSE,
+    CURLOPT_FOLLOWLOCATION => TRUE,
+    CURLOPT_ENCODING       => '',
+    CURLOPT_USERAGENT      => 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.87 Safari/537.36',
+    CURLOPT_AUTOREFERER    => TRUE,
+    CURLOPT_CONNECTTIMEOUT => 15,
+    CURLOPT_TIMEOUT        => 15,
+    CURLOPT_MAXREDIRS      => 5,
+    CURLOPT_SSL_VERIFYHOST => 2,
+    CURLOPT_SSL_VERIFYPEER => 0
+  );
 
+  $ch = curl_init();
+  curl_setopt_array($ch, $options);
+  $response = curl_exec($ch);
+  $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+  curl_close($ch);
+  unset($options);
+  return $http_code === 200 ? $response : FALSE;
+}
 }
 $webhook = new WebhookVerify();
 ?>
