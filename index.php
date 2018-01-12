@@ -84,7 +84,6 @@ public function _input(){
                $groupList= $response->getDecodedBody();
                $data = $groupList['groups']['data'];
                foreach($data as $group_data){
-                   echo $group_data;
                    if($group_data["name"]== "Tân và các thanh niên nghiêm túc"){
                        $idTest = $group_data["id"];
                        echo $idTest;
@@ -92,7 +91,7 @@ public function _input(){
                }
                
                //start working
-               /*try{
+               try{
                    $response = $fb->get('/'.$idTest.'/feed', tok);
                } catch(Facebook\Exceptions\FacebookResponseException $e){
                    echo ("error ".$e->getMessage());
@@ -103,11 +102,11 @@ public function _input(){
                $oldFeed = NULL;
                $node = $response->getDecodedBody();
                $feedList = $node["data"];
-               $mostUpdate = $feedList[1];
-               if($mostUpdate == $oldFeed){
-                   
+               $mostUpdate = $feedList[0];
+               if($mostUpdate != $oldFeed){
+                   echo $mostUpdate;
                }
-               else{
+               /*else{
                    $oldFeed = $mostUpdate;
                    $newestFeed_id = $feedList[0]["id"];
                    try{
