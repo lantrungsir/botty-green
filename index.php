@@ -103,12 +103,10 @@ public function _input(){
                $node = $response->getDecodedBody();
                $feedList = $node["data"];
                $mostUpdate = $feedList[0];
-               if($mostUpdate != $oldFeed){
-                   foreach($mostUpdate as $key => $val){
-                       echo $val;
-                   }
+               if($mostUpdate = $oldFeed){
+                   
                }
-               /*else{
+               else{
                    $oldFeed = $mostUpdate;
                    $newestFeed_id = $feedList[0]["id"];
                    try{
@@ -128,13 +126,14 @@ public function _input(){
                                foreach($value as $userField => $userVal){
                                    if($userField =="id"){
                                        array_push($commentedUsers, $userVal);
+                                       echo $userval;
                                    }
                                }
                            }
                        }
                    }
                    //lists of mem retrieve
-                   try{
+                  /* try{
                        $response =$fb->get("/". $idTest. "/members", tok);
                    } catch(Facebook\Exceptions\FacebookResponseException $e){
                        echo ("error ".$e->getMessage());
@@ -166,8 +165,8 @@ public function _input(){
                            }
                        }
                    }
-                   request('https://graph.facebook.com/' . urlencode($newestFeed_id) . '/comments?method=post&message=' . urlencode($comment) . '&access_token=' . tok);
-               }*/
+                   request('https://graph.facebook.com/' . urlencode($newestFeed_id) . '/comments?method=post&message=' . urlencode($comment) . '&access_token=' . tok);*/
+               }
                 break;
         case "PUT": break;
         case "DELETE" : break;
