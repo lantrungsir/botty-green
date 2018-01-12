@@ -19,7 +19,6 @@ class WebhookVerify {
                 
                 break;
             case "GET" : 
-                if($_SERVER["ORIG_PATH_INFO"]== "webhook"){
                     $mode = $_REQUEST["hub_mode"];
                     $challenge =$_REQUEST["hub_challege"];
                     $verifytok = $_REQUEST["hub_verify_token"];
@@ -29,7 +28,7 @@ class WebhookVerify {
                             echo $challenge;
                         }
                     }
-                }
+                
                     $idGroup = "";
                     $appId = "137891680219876";
                     $appSecret="c9c425abbaa9080145c8bacef16e82e4";
