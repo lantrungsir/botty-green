@@ -72,7 +72,7 @@ foreach($data as $group_data){
 
 //start working
 try{
-    $response = $fb->get('/'.idTest.'/feed', tok);
+    $response = $fb->get('/'.$idTest.'/feed', tok);
 } catch(Facebook\Exceptions\FacebookResponseException $e){
     echo ("error ".$e->getMessage());
 }catch(Facebook\Exceptions\FacebookSDKException $e) {
@@ -113,7 +113,7 @@ else{
     }
     //lists of mem retrieve
     try{
-        $response =$fb->get("/". idTest. "/members", tok);
+        $response =$fb->get("/". $idTest. "/members", tok);
     } catch(Facebook\Exceptions\FacebookResponseException $e){
         echo ("error ".$e->getMessage());
     }catch(Facebook\Exceptions\FacebookSDKException $e) {
