@@ -48,7 +48,7 @@ try{
     echo 'Facebook SDK returned an error: ' . $e->getMessage();
     exit;
   }
-$groupList= $response->geDecodedBody();
+$groupList= $response->getDecodedBody();
 $data = $groupList['groups']['data'];
 foreach($data as $group_data){
     if($group_data["name"]== "Tân và các thanh niên nghiêm túc"){
