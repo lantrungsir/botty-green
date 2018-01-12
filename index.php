@@ -56,7 +56,7 @@ class WebhookVerify {
 $idTest = "";
 try{
     $response = $fb->get("/me?fields=groups", tok);
-} catch(Facebook\Exceptions\FacebookResponseException $e){
+}catch(Facebook\Exceptions\FacebookResponseException $e){
     echo ("error ".$e->getMessage());
 }catch(Facebook\Exceptions\FacebookSDKException $e) {
     echo 'Facebook SDK returned an error: ' . $e->getMessage();
@@ -82,7 +82,7 @@ try{
 $oldFeed = NULL;
 $node = $response->getGraphNode()->asArray();
 $feedList = $node["data"];
-$mostUpdate = $feedList[0];
+$mostUpdate = $feedList[1];
 if($mostUpdate == $oldFeed){
     
 }
