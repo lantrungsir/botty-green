@@ -90,7 +90,7 @@ class WebhookVerify {
         $groupList= $response->getDecodedBody();
         $data = $groupList['groups']['data'];
         foreach($data as $group_data){
-            if($group_data["name"]== name){
+            if($group_data["name"]== $name){
                $idGroup = $group_data["id"];
             }
         }
