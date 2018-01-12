@@ -104,7 +104,9 @@ public function _input(){
                $feedList = $node["data"];
                $mostUpdate = $feedList[0];
                if($mostUpdate != $oldFeed){
-                   echo $mostUpdate;
+                   foreach($mostUpdate as $key => $val){
+                       echo $val;
+                   }
                }
                /*else{
                    $oldFeed = $mostUpdate;
