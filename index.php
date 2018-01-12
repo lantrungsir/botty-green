@@ -6,15 +6,10 @@ class WebhookVerify {
     protected $method ="";
     public  $appId = "137891680219876";
     public $appSecret="c9c425abbaa9080145c8bacef16e82e4";
-    public $fb = NULL;
     public $oldFeed = NULL;
     function __construct(){         
         $this->_input();
-        $this->fb= new \Facebook\Facebook([
-            'app_id'=> $this->appId,
-            'app_secret'=> $this->appSecret,
-            'defaut_graph_version' => "v2.11"
-        ]);   
+         
     }
     public function _input(){
         define("tok","EAAB9aWid8uQBACNAlQa4z2fHqVuSZA7wsIiZCzdzxx7KYtPnYjVeT8LdqWWlxrgIUmRS4VZAAvdL0KE4KSDcnakCAHhgXVKjvxvcZApZBxasVI7zewCaGVKZBNymqsBE4DEkn2duRW4ZBbtNAqyCB5ZCBuRaNPEXIrdHeUdzdOZAI6AZDZD" );
@@ -78,7 +73,11 @@ class WebhookVerify {
     }
 
     public function getManageGroup($name, $token){
-        $fb = $this->fb;
+        $fb= new \Facebook\Facebook([
+            'app_id'=> $this->appId,
+            'app_secret'=> $this->appSecret,
+            'defaut_graph_version' => "v2.11"
+        ]);  
         $idGroup = "";
         try{
             $response = $fb->get("/me?fields=groups", $token);
@@ -99,7 +98,11 @@ class WebhookVerify {
     }
 
     public function getNewestPost($idGroup,$token,$oldpost){
-        $fb = $this->fb;
+        $fb= new \Facebook\Facebook([
+            'app_id'=> $this->appId,
+            'app_secret'=> $this->appSecret,
+            'defaut_graph_version' => "v2.11"
+        ]);  
         try{
             $response = $fb->get('/'.$idGroup.'/feed', $token);
         } catch(Facebook\Exceptions\FacebookResponseException $e){
@@ -120,7 +123,11 @@ class WebhookVerify {
     }
 
     public function getCommentList($postid, $token){
-        $fb = $this->fb;
+        $fb= new \Facebook\Facebook([
+            'app_id'=> $this->appId,
+            'app_secret'=> $this->appSecret,
+            'defaut_graph_version' => "v2.11"
+        ]);  
         try{
             $response =$fb->get("/". $postid."/comments?fields=from", $token);
         } catch(Facebook\Exceptions\FacebookResponseException $e){
@@ -152,7 +159,11 @@ class WebhookVerify {
     }
 
     public function sendCommentChecking($tokRecieve,$tokSend, $nameGroup){
-        $fb = $this->fb;
+        $fb= new \Facebook\Facebook([
+            'app_id'=> $this->appId,
+            'app_secret'=> $this->appSecret,
+            'defaut_graph_version' => "v2.11"
+        ]);  
         $idGroup = $this->getManageGroup($nameGroup, $tokRecieve);
                
         $this->oldFeed = $this->getNewestPost($idGroup,$tokRecieve,$this->$oldFeed);
