@@ -147,23 +147,12 @@ public function _input(){
                    $comment = "Những người sau chưa comment xác nhận: ";
                    foreach($memlist as $mem){
                        $is_conf = false;
-                       foreach($mem as $memfield => $memval){
-                           if($memfield == "id"){
-                               if(in_array($memval, $commentedUsers)){
-                                   //do sth to notify mems
-                                   echo "//".$memval;
-                                   $is_conf = true;
-                                }  
-                           }
-                           if($memfield == "name"){
-                                if($is_conf){
+                       if(in_array($mem["id"],$commentedUsers)){
 
-                                }
-                                else{
-                                    $comment .= $memval." , ";
-                                }
-                            }
-                        }   
+                       } 
+                       else{
+                           $comment .= "@".$mem["name"].",";
+                       }
                     }
                    echo $comment;
                    /*request('https://graph.facebook.com/' . urlencode($newestFeed_id) . '/comments?method=post&message=' . urlencode($comment) . '&access_token=' . tok);*/
