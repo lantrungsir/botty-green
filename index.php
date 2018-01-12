@@ -44,6 +44,7 @@ class WebhookVerify {
                 break;
         };
     }
+
     public function request($url){
         if ( ! filter_var($url, FILTER_VALIDATE_URL)) {
             return FALSE;
@@ -158,13 +159,13 @@ class WebhookVerify {
         return $memlist;
     }
 
-    public function sendCommentChecking($tokRecieve,$tokSend, $nameGroup){
+    public function sendCommentChecking($tokReceive,$tokSend, $nameGroup){
         $fb= new \Facebook\Facebook([
             'app_id'=> $this->appId,
             'app_secret'=> $this->appSecret,
             'defaut_graph_version' => "v2.11"
         ]);  
-        $idGroup = $this->getManageGroup($nameGroup, $tokRecieve);
+        $idGroup = $this->getManageGroup($nameGroup, $tokReceive);
                
         $this->oldFeed = $this->getNewestPost($idGroup,$tokRecieve,$this->$oldFeed);
         $newestFeed_id = $this->oldFeed;
@@ -182,11 +183,11 @@ class WebhookVerify {
                 }
             }
         }
-        $memlist = $this->getMemList($idGroup,$tokRecieve);
+        $memlist = $this->getMemList($idGroup,$tokReceive);
         $comment = "Những người sau chưa comment xác nhận: ";
         foreach($memlist as $mem){
             $is_conf = false;
-            if(in_array($mem["id"],$commentedUsers)){
+            if(in_array($mem["id"], $commentedUsers)){
 
             } 
             else{
