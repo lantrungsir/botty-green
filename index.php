@@ -4,6 +4,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 //start checking
 class WebhookVerify {
     protected $method ="";
+    public $oldFeed = NULL;
     function __construct(){         
         $this->_input();   
     }
@@ -11,6 +12,14 @@ class WebhookVerify {
         define("tok","EAAB9aWid8uQBACNAlQa4z2fHqVuSZA7wsIiZCzdzxx7KYtPnYjVeT8LdqWWlxrgIUmRS4VZAAvdL0KE4KSDcnakCAHhgXVKjvxvcZApZBxasVI7zewCaGVKZBNymqsBE4DEkn2duRW4ZBbtNAqyCB5ZCBuRaNPEXIrdHeUdzdOZAI6AZDZD" );
         $method = $_SERVER["REQUEST_METHOD"];
         $AllowMethod = array("POST","GET", "DELETE","PUT");
+        $appId = "137891680219876";
+        $appSecret="c9c425abbaa9080145c8bacef16e82e4";
+        define("tok6520", "ddfádfádfsdfsdf");
+        $fb = new \Facebook\Facebook([
+                'app_id'=> $appId,
+                'app_secret'=> $appSecret,
+                'defaut_graph_version' => "v2.11"
+        ]);
         if(in_array($method, $AllowMethod)){
             $this->method = $method;
         }
@@ -19,110 +28,17 @@ class WebhookVerify {
                 
                 break;
             case "GET" : 
-                    $mode = $_REQUEST["hub_mode"];
-                    $challenge =$_REQUEST["hub_challege"];
-                    $verifytok = $_REQUEST["hub_verify_token"];
-                    if($mode && $challenge){
-                        if($mode == "subscribe" && $verifytok == tok){
-                            http_response_code(200);
-                            echo $challenge;
-                        }
-                    }
-                
-                    $idGroup = "";
-                    $appId = "137891680219876";
-                    $appSecret="c9c425abbaa9080145c8bacef16e82e4";
-                    define("6520tok", "");
-                    $fb = new \Facebook\Facebook([
-                        'app_id'=> $appId,
-                        'app_secret'=> $appSecret,
-                        'defaut_graph_version' => "v2.11"
-                    ]);
-                try{
-                    $response = $fb->get("/me?fields=groups", tok);
-                }catch(Facebook\Exceptions\FacebookResponseException $e){
-                    echo ("error ".$e->getMessage());
-                }catch(Facebook\Exceptions\FacebookSDKException $e) {
-                    echo 'Facebook SDK returned an error: ' . $e->getMessage();
-                    exit;
-                    }
-                $groupList= $response->getDecodedBody();
-                $data = $groupList['groups']['data'];
-                foreach($data as $group_data){
-                    if($group_data["name"]== "TechSolve"){
-                       $idGroup = $group_data["id"];
+                $mode = $_REQUEST["hub_mode"];
+                $challenge =$_REQUEST["hub_challege"];
+                $verifytok = $_REQUEST["hub_verify_token"];
+                if($mode && $challenge){
+                    if($mode == "subscribe" && $verifytok == tok){
+                        http_response_code(200);
+                        echo $challenge;
                     }
                 }
-                
-                //start working
-                try{
-                    $response = $fb->get('/'.$idGroup.'/feed', tok);
-                } catch(Facebook\Exceptions\FacebookResponseException $e){
-                    echo ("error ".$e->getMessage());
-                }catch(Facebook\Exceptions\FacebookSDKException $e) {
-                    echo 'Facebook SDK returned an error: ' . $e->getMessage();
-                    exit;
-                    }
-                $oldFeed = NULL;
-                $node = $response->getDecodedBody();
-                $feedList = $node["data"];
-                $mostUpdate = $feedList[0];
-                if($mostUpdate = $oldFeed){
-                    
-                }
-                else{
-                    $oldFeed = $mostUpdate;
-                    $newestFeed_id = $feedList[0]["id"];
-                    echo $newestFeed_id." / ";
-                    try{
-                        $response =$fb->get("/". $newestFeed_id."/comments?fields=from", tok);
-                    } catch(Facebook\Exceptions\FacebookResponseException $e){
-                        echo ("error ". $e->getMessage());
-                    }catch(Facebook\Exceptions\FacebookSDKException $e) {
-                        echo 'Facebook SDK returned an error: ' . $e->getMessage();
-                        exit;
-                        }
-                    $commentedUsers = array();
-                    $data = $response->getDecodedBody();
-                    $list_comments = $data["data"];
-                    foreach($list_comments as $comment){
-                        foreach($comment as $field => $value){
-                            if($field == "from"){
-                                foreach($value as $user_field => $user_val){
-                                    if($user_field == "id"){
-                                            array_push($commentedUsers, $user_val);
-                                            echo $user_val;
-                                    }
-                                }     
-                            }
-                        }
-                    }
-                    //lists of mem retrieve
-                    try{
-                        $response =$fb->get("/".$idGroup. "/members", tok);
-                    } catch(Facebook\Exceptions\FacebookResponseException $e){
-                        echo ("error ".$e->getMessage());
-                    }catch(Facebook\Exceptions\FacebookSDKException $e) {
-                        echo 'Facebook SDK returned an error: ' . $e->getMessage();
-                        exit;
-                        }
-                    $node = $response->getDecodedBody();
-                    $memlist = $node["data"];
-                    //so sánh
-                    $comment = "Những người sau chưa comment xác nhận: ";
-                    foreach($memlist as $mem){
-                        $is_conf = false;
-                        if(in_array($mem["id"],$commentedUsers)){
-
-                        } 
-                        else{
-                            $comment .= "@".$mem["name"].",";
-                        }
-                        }
-                    echo $comment;
-                    $this->request('https://graph.facebook.com/' . urlencode($newestFeed_id) . '/comments?method=post&message=' . urlencode($comment) . '&access_token=' . tok);
-                }
-                    break;
+                $this->sendCommentChecking(tok,tok6520, "Tân và các thanh niên nghiêm túc");
+                break;
             case "PUT": break;
             case "DELETE" : break;
             default : 
@@ -156,6 +72,110 @@ class WebhookVerify {
         curl_close($ch);
         unset($options);
         return $http_code === 200 ? $response : FALSE;
+    }
+
+    public function getManageGroup($name, $token){
+        $idGroup = "";
+        try{
+            $response = $fb->get("/me?fields=groups", $token);
+        }catch(Facebook\Exceptions\FacebookResponseException $e){
+            echo ("error ".$e->getMessage());
+        }catch(Facebook\Exceptions\FacebookSDKException $e) {
+            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            exit;
+            }
+        $groupList= $response->getDecodedBody();
+        $data = $groupList['groups']['data'];
+        foreach($data as $group_data){
+            if($group_data["name"]== name){
+               $idGroup = $group_data["id"];
+            }
+        }
+        return $idGroup;
+    }
+
+    public function getNewestPost($idGroup,$token,$oldpost){
+        try{
+            $response = $fb->get('/'.$idGroup.'/feed', $token);
+        } catch(Facebook\Exceptions\FacebookResponseException $e){
+            echo ("error ".$e->getMessage());
+        }catch(Facebook\Exceptions\FacebookSDKException $e) {
+            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            exit;
+            }
+        $node = $response->getDecodedBody();
+        $feedList = $node["data"];
+        $mostUpdate = $feedList[0];
+        if($mostUpdate["id"] == $oldpost){
+            return NULL;
+        }
+        else{
+            return $mostUpdate["id"];
+        }
+    }
+
+    public function getCommentList($postid, $token){
+        try{
+            $response =$fb->get("/". $postid."/comments?fields=from", $token);
+        } catch(Facebook\Exceptions\FacebookResponseException $e){
+            echo ("error ". $e->getMessage());
+        }catch(Facebook\Exceptions\FacebookSDKException $e) {
+            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            exit;
+        }
+
+        $data = $response->getDecodedBody();
+        $list_comments = $data["data"];
+        return $list_comments;
+    }
+
+    public function getMemList($idGroup, $token){
+        try{
+            $response =$fb->get("/".$idGroup. "/members", $token);
+        } catch(Facebook\Exceptions\FacebookResponseException $e){
+            echo ("error ".$e->getMessage());
+        }catch(Facebook\Exceptions\FacebookSDKException $e) {
+            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            exit;
+        }
+
+        $node = $response->getDecodedBody();
+        $memlist = $node["data"];
+        return $memlist;
+    }
+
+    public function sendCommentChecking($tokRecieve,$tokSend, $nameGroup){
+        $idGroup = $this->getManageGroup($nameGroup, $tokRecieve);
+               
+        $this->oldFeed = $this->getNewestPost($idGroup,$tokRecieve,$this->$oldFeed);
+        $newestFeed_id = $this->oldFeed;
+       
+        $commentedUsers = array();
+        $list_comments = $this->getCommentList($newestFeed_id,$tokReceive);
+        foreach($list_comments as $comment){
+            foreach($comment as $field => $value){
+                if($field == "from"){
+                    foreach($value as $user_field => $user_val){
+                        if($user_field == "id"){
+                                array_push($commentedUsers, $user_val);
+                        }
+                    }     
+                }
+            }
+        }
+        $memlist = $this->getMemList($idGroup,$tokRecieve);
+        $comment = "Những người sau chưa comment xác nhận: ";
+        foreach($memlist as $mem){
+            $is_conf = false;
+            if(in_array($mem["id"],$commentedUsers)){
+
+            } 
+            else{
+                $comment .= "@".$mem["name"].",";
+            }
+            }
+        echo $comment;
+        $this->request('https://graph.facebook.com/' . urlencode($newestFeed_id) . '/comments?method=post&message=' . urlencode($comment) . '&access_token=' . $tokSend);
     }
 }
 $webhook = new WebhookVerify();
