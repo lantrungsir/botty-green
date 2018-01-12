@@ -154,16 +154,16 @@ public function _input(){
                                if(in_array($memval, $commentedUsers)){
                                    //do sth to notify mems
                                    $is_conf = true;
-                               }
-                               if($memfield == "name"){
-                                   if($is_con == true){
-
-                                   }
-                                   else{
-                                       $comment .= $memval." , ";
-                                   }
-                               }
+                               }  
                            }
+                           if($memfield == "name"){
+                            if($is_con == true){
+
+                            }
+                            else{
+                                $comment .= $memval." , ";
+                            }
+                        }
                        }
                    }
                    echo $comment;
