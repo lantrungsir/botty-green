@@ -40,15 +40,13 @@ $fb = new \Facebook\Facebook([
 ]);
 
 //start checking
-
 class WebhookVerify {
     protected $myToken = "EAAB9aWid8uQBAEXAwDotGNHVaBhxSJD4L6PklOsgR7ITBZA9M4iJK4k4IjTQhKZCD4KlcaCRWA5djLjPqHEEoIMNE53gWeeuYyfk4PTliFo1oTxuk1kdldgP77ENMkoqmtDBsWwy7PrZB25iDEaZAyYvgWxXnNNQ9xTPOeMQyZCysxfhrig8LpFhvLSZBF8zXeCdl2DfQgpAZDZD";
     protected $method ="";
     protected $endpoint ="";
     protected $params = array();
     protected $file = Null;
-function __construct(){
-    parent::__construct();            
+function __construct(){         
     $this->_input();   
 }
 public function _input(){
