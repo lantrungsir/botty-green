@@ -106,7 +106,7 @@ else{
         echo 'Facebook SDK returned an error: ' . $e->getMessage();
         exit;
       }
-    $node = $response.getDecodedBody();
+    $node = $response->getDecodedBody();
     $memlist = $node["data"];
     //so sánh
     $comment = "Những người sau chưa comment xác nhận: ";
