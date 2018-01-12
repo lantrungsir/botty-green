@@ -124,7 +124,7 @@ public function _input(){
                        foreach($comment as $field => $value){
                            if($field == "from"){
                                foreach($value as $user_field => $user_val){
-                                   if($user_field = "id"){
+                                   if($user_field == "id"){
                                         array_push($commentedUsers, $user_val);
                                    }
                                }     
@@ -148,7 +148,7 @@ public function _input(){
                        foreach($mem as $memfield => $memval){
                            $memid= "5";
                            $is_conf = false;
-                           if($memfield = "id"){
+                           if($memfield == "id"){
                                $memid = $memval;
                                if(in_array($memval, $commentedUsers)){
                                    //do sth to notify mems
