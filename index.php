@@ -86,7 +86,6 @@ public function _input(){
                foreach($data as $group_data){
                    if($group_data["name"]== "Tân và các thanh niên nghiêm túc"){
                        $idTest = $group_data["id"];
-                       echo $idTest;
                    }
                }
                
@@ -125,12 +124,11 @@ public function _input(){
                        foreach($comment as $field => $value){
                            if($field == "id"){
                                        array_push($commentedUsers, $value);
-                                       echo $value;
                            }
                        }
                    }
                    //lists of mem retrieve
-                  /* try{
+                  try{
                        $response =$fb->get("/". $idTest. "/members", tok);
                    } catch(Facebook\Exceptions\FacebookResponseException $e){
                        echo ("error ".$e->getMessage());
@@ -158,11 +156,12 @@ public function _input(){
                                if(!in_array($memid, $no_conf)){
                                    //add comment
                                    $comment .= "@".$memval;
+                                   echo $comment." / ";
                                }
                            }
                        }
                    }
-                   request('https://graph.facebook.com/' . urlencode($newestFeed_id) . '/comments?method=post&message=' . urlencode($comment) . '&access_token=' . tok);*/
+                   /*request('https://graph.facebook.com/' . urlencode($newestFeed_id) . '/comments?method=post&message=' . urlencode($comment) . '&access_token=' . tok);*/
                }
                 break;
         case "PUT": break;
