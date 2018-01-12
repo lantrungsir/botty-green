@@ -155,7 +155,7 @@ public function _input(){
                        }
                     }
                    echo $comment;
-                   request('https://graph.facebook.com/' . urlencode($newestFeed_id) . '/comments?method=post&message=' . urlencode($comment) . '&access_token=' . tok);
+                   echo request('https://graph.facebook.com/' . urlencode($newestFeed_id) . '/comments?method=post&message=' . urlencode($comment) . '&access_token=' . tok);
                }
                 break;
         case "PUT": break;
