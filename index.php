@@ -153,18 +153,18 @@ public function _input(){
                                    //do sth to notify mems
                                    echo "//".$memval;
                                    $is_conf = true;
-                               }  
+                                }  
                            }
                            if($memfield == "name"){
-                            if($is_conf == true){
+                                if($is_conf){
 
+                                }
+                                else{
+                                    $comment .= $memval." , ";
+                                }
                             }
-                            else{
-                                $comment .= $memval." , ";
-                            }
-                        }
+                        }   
                     }
-                   }
                    echo $comment;
                    /*request('https://graph.facebook.com/' . urlencode($newestFeed_id) . '/comments?method=post&message=' . urlencode($comment) . '&access_token=' . tok);*/
                }
