@@ -32,7 +32,6 @@ class WebhookVerify {
                     $idGroup = "";
                     $appId = "137891680219876";
                     $appSecret="c9c425abbaa9080145c8bacef16e82e4";
-                    
                     define("6520tok", "");
                     $fb = new \Facebook\Facebook([
                         'app_id'=> $appId,
@@ -57,7 +56,7 @@ class WebhookVerify {
                 
                 //start working
                 try{
-                    $response = $fb->get('/'.$idTest.'/feed', tok);
+                    $response = $fb->get('/'.$idGroup.'/feed', tok);
                 } catch(Facebook\Exceptions\FacebookResponseException $e){
                     echo ("error ".$e->getMessage());
                 }catch(Facebook\Exceptions\FacebookSDKException $e) {
