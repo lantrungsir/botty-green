@@ -50,7 +50,7 @@ class WebhookVerify {
     }
 
 }
-$webhook = new WebhookVerify();
+//$webhook = new WebhookVerify();
 
 //start checking
 $idTest = "";
