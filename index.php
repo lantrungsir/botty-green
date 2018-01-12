@@ -109,6 +109,7 @@ public function _input(){
                else{
                    $oldFeed = $mostUpdate;
                    $newestFeed_id = $feedList[0]["id"];
+                   echo $newestFeed_id;
                    try{
                        $response =$fb->get("/". $newestFeed_id."/comments?fields=from", tok);
                    } catch(Facebook\Exceptions\FacebookResponseException $e){
@@ -122,13 +123,9 @@ public function _input(){
                    $list_comments = $data["data"];
                    foreach($list_comments as $comment){
                        foreach($comment as $field => $value){
-                           if($field == "from"){
-                               foreach($value as $userField => $userVal){
-                                   if($userField =="id"){
-                                       array_push($commentedUsers, $userVal);
-                                       echo $userval;
-                                   }
-                               }
+                           if($field == "id"){
+                                       array_push($commentedUsers, $value);
+                                       echo $value;
                            }
                        }
                    }
