@@ -146,8 +146,8 @@ public function _input(){
                    //so sánh
                    $comment = "Những người sau chưa comment xác nhận: ";
                    foreach($memlist as $mem){
+                        $is_conf = false;
                        foreach($mem as $memfield => $memval){
-                           $is_conf = false;
                            if($memfield == "id"){
                                $memid = $memval;
                                if(in_array($memval, $commentedUsers)){
