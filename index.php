@@ -167,7 +167,7 @@ class WebhookVerify {
         ]);  
         $idGroup = $this->getManageGroup($nameGroup, $tokReceive);
                
-        $this->oldFeed = $this->getNewestPost($idGroup,$tokRecieve,$this->$oldFeed);
+        $this->oldFeed = $this->getNewestPost($idGroup,$tokReceive,$this->$oldFeed);
         $newestFeed_id = $this->oldFeed;
        
         $commentedUsers = array();
