@@ -125,7 +125,7 @@ public function _input(){
                            if($field == "from"){
                                foreach($value as $user_field => $user_val){
                                    if($user_field = "id"){
-                                    array_push($commentedUsers, $val);
+                                        array_push($commentedUsers, $user_val);
                                    }
                                }     
                            }
