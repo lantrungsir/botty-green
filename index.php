@@ -83,6 +83,7 @@ public function _input(){
                  }
                $groupList= $response->getDecodedBody();
                $data = $groupList['groups']['data'];
+               echo $groupList
                foreach($data as $group_data){
                    if($group_data["name"]== "Tân và các thanh niên nghiêm túc"){
                        $idTest = $group_data["id"];
@@ -90,7 +91,7 @@ public function _input(){
                }
                
                //start working
-               try{
+               /*try{
                    $response = $fb->get('/'.$idTest.'/feed', tok);
                } catch(Facebook\Exceptions\FacebookResponseException $e){
                    echo ("error ".$e->getMessage());
@@ -164,8 +165,7 @@ public function _input(){
                        }
                    }
                    request('https://graph.facebook.com/' . urlencode($newestFeed_id) . '/comments?method=post&message=' . urlencode($comment) . '&access_token=' . tok);
-               }
-               
+               }*/
                 break;
         case "PUT": break;
         case "DELETE" : break;
