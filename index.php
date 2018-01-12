@@ -147,7 +147,6 @@ public function _input(){
                    $comment = "Những người sau chưa comment xác nhận: ";
                    foreach($memlist as $mem){
                        foreach($mem as $memfield => $memval){
-                           $memid= "5";
                            $is_conf = false;
                            if($memfield == "id"){
                                $memid = $memval;
@@ -157,7 +156,7 @@ public function _input(){
                                }  
                            }
                            if($memfield == "name"){
-                            if($is_con == true){
+                            if($is_conf == true){
 
                             }
                             else{
