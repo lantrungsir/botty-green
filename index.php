@@ -144,7 +144,11 @@ class WebhookVerify {
     }
 
     public function getMemList($idGroup, $token){
-        $fb = $this->fb;
+        $fb= new \Facebook\Facebook([
+            'app_id'=> $this->appId,
+            'app_secret'=> $this->appSecret,
+            'defaut_graph_version' => "v2.11"
+        ]); 
         try{
             $response =$fb->get("/".$idGroup. "/members", $token);
         } catch(Facebook\Exceptions\FacebookResponseException $e){
