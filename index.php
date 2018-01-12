@@ -12,7 +12,7 @@ class WebhookVerify {
     public function _input(){
         define("tok","EAAB9aWid8uQBACNAlQa4z2fHqVuSZA7wsIiZCzdzxx7KYtPnYjVeT8LdqWWlxrgIUmRS4VZAAvdL0KE4KSDcnakCAHhgXVKjvxvcZApZBxasVI7zewCaGVKZBNymqsBE4DEkn2duRW4ZBbtNAqyCB5ZCBuRaNPEXIrdHeUdzdOZAI6AZDZD" );
         $method = $_SERVER["REQUEST_METHOD"];
-        $this->params =explode("/",trim($_SERVER["PATH_INFO"],"/"));
+        $this->params = explode("/",trim($_SERVER["PATH_INFO"],"/"));
         $this->endpoint = array_shift($this->params);
         $AllowMethod = array("POST","GET", "DELETE","PUT");
         if(in_array($method, $AllowMethod)){
@@ -23,7 +23,7 @@ class WebhookVerify {
                 
                 break;
             case "GET" : 
-                if($this->endpoint == "webhook"){
+                if($this->endpoint == "/webhook"){
                     $mode = $_REQUEST["hub_mode"];
                     $challenge =$_REQUEST["hub_challege"];
                     $verifytok = $_REQUEST["hub_verify_token"];
