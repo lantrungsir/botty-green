@@ -19,7 +19,7 @@ class WebhookVerify {
                 
                 break;
             case "GET" : 
-                if($_SERVER["ORIG_PATH_INFO"]== "/webhook"){
+                if($_SERVER["ORIG_PATH_INFO"]== "webhook"){
                     $mode = $_REQUEST["hub_mode"];
                     $challenge =$_REQUEST["hub_challege"];
                     $verifytok = $_REQUEST["hub_verify_token"];
