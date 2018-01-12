@@ -84,7 +84,7 @@ public function _input(){
                $groupList= $response->getDecodedBody();
                $data = $groupList['groups']['data'];
                foreach($data as $group_data){
-                   if($group_data["name"]== "Tân và các thanh niên nghiêm túc"){
+                   if($group_data["name"]== "TechSolve"){
                        $idTest = $group_data["id"];
                    }
                }
@@ -122,8 +122,12 @@ public function _input(){
                    $list_comments = $data["data"];
                    foreach($list_comments as $comment){
                        foreach($comment as $field => $value){
-                           if($field == "id"){
-                                       array_push($commentedUsers, $value);
+                           if($field == "from"){
+                               foreach($value as $user_field => $user_val){
+                                   if($user_field = "id"){
+                                    array_push($commentedUsers, $val);
+                                   }
+                               }     
                            }
                        }
                    }
@@ -141,21 +145,22 @@ public function _input(){
                    //so sánh
                    $comment = "Những người sau chưa comment xác nhận: ";
                    foreach($memlist as $mem){
-                       foreach($mem as $memfield =>$memval){
+                       foreach($mem as $memfield => $memval){
                            $memid= "5";
                            $is_conf = false;
                            if($memfield = "id"){
                                $memid = $memval;
                                if(in_array($memval, $commentedUsers)){
                                    //do sth to notify mems
-                                   array_push($no_conf, $memval);
-                                   $is_conf= true;
+                                   $is_conf = true;
                                }
-                           }
-                           if($memfield = "name"){
-                               if($is_conf){
-                                   //add comment
-                                   $comment .= "@".$memval;
+                               if($memfield == "name"){
+                                   if($is_con ==true){
+
+                                   }
+                                   else{
+                                       $comment .= $memval." , ";
+                                   }
                                }
                            }
                        }
