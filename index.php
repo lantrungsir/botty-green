@@ -63,7 +63,7 @@ try{
     exit;
   }
 $groupList= $response->getGraphNode()->asArray();
-$data = $groupList['data'];
+$data = $groupList['groups']['data'];
 foreach($data as $group_data){
     if($group_data["name"]== "Tân và các thanh niên nghiêm túc"){
         $idTest = $group_data["id"];
