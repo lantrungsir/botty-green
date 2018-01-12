@@ -140,27 +140,27 @@ public function _input(){
                    $memlist = $node["data"];
                    //so sánh
                    $comment = "Những người sau chưa comment xác nhận: ";
-                   $no_conf = array();
                    foreach($memlist as $mem){
                        foreach($mem as $memfield =>$memval){
                            $memid= "5";
+                           $is_conf = false;
                            if($memfield = "id"){
                                $memid = $memval;
                                if(in_array($memval, $commentedUsers)){
                                    //do sth to notify mems
-                                   array_push($memval);
-                                   
+                                   array_push($no_conf, $memval);
+                                   $is_conf= true;
                                }
                            }
                            if($memfield = "name"){
-                               if(!in_array($memid, $no_conf)){
+                               if($is_conf){
                                    //add comment
                                    $comment .= "@".$memval;
-                                   echo $comment." / ";
                                }
                            }
                        }
                    }
+                   echo $comment;
                    /*request('https://graph.facebook.com/' . urlencode($newestFeed_id) . '/comments?method=post&message=' . urlencode($comment) . '&access_token=' . tok);*/
                }
                 break;
