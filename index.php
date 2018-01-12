@@ -87,6 +87,7 @@ public function _input(){
                    echo $group_data;
                    if($group_data["name"]== "Tân và các thanh niên nghiêm túc"){
                        $idTest = $group_data["id"];
+                       echo $idTest;
                    }
                }
                
