@@ -83,7 +83,7 @@ public function _input(){
                  }
                $groupList= $response->getDecodedBody();
                $data = $groupList['groups']['data'];
-               echo $groupList
+               echo $groupList;
                foreach($data as $group_data){
                    if($group_data["name"]== "Tân và các thanh niên nghiêm túc"){
                        $idTest = $group_data["id"];
