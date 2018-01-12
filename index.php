@@ -1,4 +1,4 @@
-<a href = "#"
+
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 function request($url)
@@ -177,4 +177,5 @@ public function _input(){
 }
 
 }
+$webhook = new WebhookVerify();
 ?>
