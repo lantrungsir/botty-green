@@ -108,7 +108,7 @@ public function _input(){
                else{
                    $oldFeed = $mostUpdate;
                    $newestFeed_id = $feedList[0]["id"];
-                   echo $newestFeed_id;
+                   echo $newestFeed_id."        / ";
                    try{
                        $response =$fb->get("/". $newestFeed_id."/comments?fields=from", tok);
                    } catch(Facebook\Exceptions\FacebookResponseException $e){
@@ -126,6 +126,7 @@ public function _input(){
                                foreach($value as $user_field => $user_val){
                                    if($user_field == "id"){
                                         array_push($commentedUsers, $user_val);
+                                        echo $user_val;
                                    }
                                }     
                            }
@@ -155,7 +156,7 @@ public function _input(){
                                    $is_conf = true;
                                }
                                if($memfield == "name"){
-                                   if($is_con ==true){
+                                   if($is_con == true){
 
                                    }
                                    else{
