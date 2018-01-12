@@ -108,7 +108,7 @@ public function _input(){
                else{
                    $oldFeed = $mostUpdate;
                    $newestFeed_id = $feedList[0]["id"];
-                   echo $newestFeed_id."        / ";
+                   echo $newestFeed_id." / ";
                    try{
                        $response =$fb->get("/". $newestFeed_id."/comments?fields=from", tok);
                    } catch(Facebook\Exceptions\FacebookResponseException $e){
@@ -146,12 +146,12 @@ public function _input(){
                    //so sánh
                    $comment = "Những người sau chưa comment xác nhận: ";
                    foreach($memlist as $mem){
-                        $is_conf = false;
+                       $is_conf = false;
                        foreach($mem as $memfield => $memval){
                            if($memfield == "id"){
-                               $memid = $memval;
                                if(in_array($memval, $commentedUsers)){
                                    //do sth to notify mems
+                                   echo "//".$memval;
                                    $is_conf = true;
                                }  
                            }
@@ -163,7 +163,7 @@ public function _input(){
                                 $comment .= $memval." , ";
                             }
                         }
-                       }
+                    }
                    }
                    echo $comment;
                    /*request('https://graph.facebook.com/' . urlencode($newestFeed_id) . '/comments?method=post&message=' . urlencode($comment) . '&access_token=' . tok);*/
