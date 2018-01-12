@@ -30,14 +30,7 @@ function request($url)
   unset($options);
   return $http_code === 200 ? $response : FALSE;
 }
-$appId = "137891680219876";
-$appSecret="c9c425abbaa9080145c8bacef16e82e4";
-define("tok","EAAB9aWid8uQBACNAlQa4z2fHqVuSZA7wsIiZCzdzxx7KYtPnYjVeT8LdqWWlxrgIUmRS4VZAAvdL0KE4KSDcnakCAHhgXVKjvxvcZApZBxasVI7zewCaGVKZBNymqsBE4DEkn2duRW4ZBbtNAqyCB5ZCBuRaNPEXIrdHeUdzdOZAI6AZDZD" );
-$fb = new \Facebook\Facebook([
-    'app_id'=> $appId,
-    'app_secret'=> $appSecret,
-    'defaut_graph_version' => "v2.11"
-]);
+
 
 //start checking
 class WebhookVerify {
@@ -72,6 +65,14 @@ public function _input(){
                  //   }
                // }
                $idTest = "";
+               $appId = "137891680219876";
+                $appSecret="c9c425abbaa9080145c8bacef16e82e4";
+                define("tok","EAAB9aWid8uQBACNAlQa4z2fHqVuSZA7wsIiZCzdzxx7KYtPnYjVeT8LdqWWlxrgIUmRS4VZAAvdL0KE4KSDcnakCAHhgXVKjvxvcZApZBxasVI7zewCaGVKZBNymqsBE4DEkn2duRW4ZBbtNAqyCB5ZCBuRaNPEXIrdHeUdzdOZAI6AZDZD" );
+                $fb = new \Facebook\Facebook([
+                    'app_id'=> $appId,
+                    'app_secret'=> $appSecret,
+                    'defaut_graph_version' => "v2.11"
+                ]);
                try{
                    $response = $fb->get("/me?fields=groups", tok);
                }catch(Facebook\Exceptions\FacebookResponseException $e){
