@@ -23,11 +23,6 @@ class WebhookVerify {
         $appId = "137891680219876";
         $appSecret="c9c425abbaa9080145c8bacef16e82e4";
         define("tok6520", "ddfádfádfsdfsdf");
-        $fb = new \Facebook\Facebook([
-                'app_id'=> $appId,
-                'app_secret'=> $appSecret,
-                'defaut_graph_version' => "v2.11"
-        ]);
         if(in_array($method, $AllowMethod)){
             $this->method = $method;
         }
