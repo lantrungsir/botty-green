@@ -3,13 +3,13 @@
 require_once __DIR__ . '/vendor/autoload.php';
 //start checking
 class WebhookVerify {
-    protected $myToken = "EAAB9aWid8uQBAEXAwDotGNHVaBhxSJD4L6PklOsgR7ITBZA9M4iJK4k4IjTQhKZCD4KlcaCRWA5djLjPqHEEoIMNE53gWeeuYyfk4PTliFo1oTxuk1kdldgP77ENMkoqmtDBsWwy7PrZB25iDEaZAyYvgWxXnNNQ9xTPOeMQyZCysxfhrig8LpFhvLSZBF8zXeCdl2DfQgpAZDZD";
     protected $method ="";
     protected $endpoint ="";
     function __construct(){         
         $this->_input();   
     }
     public function _input(){
+        define("tok","EAAB9aWid8uQBACNAlQa4z2fHqVuSZA7wsIiZCzdzxx7KYtPnYjVeT8LdqWWlxrgIUmRS4VZAAvdL0KE4KSDcnakCAHhgXVKjvxvcZApZBxasVI7zewCaGVKZBNymqsBE4DEkn2duRW4ZBbtNAqyCB5ZCBuRaNPEXIrdHeUdzdOZAI6AZDZD" );
         $method = $_SERVER["REQUEST_METHOD"];
         $AllowMethod = array("POST","GET", "DELETE","PUT");
         if(in_array($method, $AllowMethod)){
@@ -20,19 +20,22 @@ class WebhookVerify {
                 
                 break;
             case "GET" : 
-                // $mode =$_REQUEST['hub_mode'];
-                // $challenge = $_REQUEST['hub_challenge'];
-                // $token_verify = $_REQUEST['hub_verify_token'];
-                // if($mode && $challenge && $token_verify){
-                    //    if($mode == "subscribe" and $token_verify == $this->myToken){
-                    //       http_response_code(200);
-                    //       echo $challenge;
-                    //   }
-                // }
-                $idTest = "";
-                $appId = "137891680219876";
+                if($_SERVER['PATH_INFO']=="/webhook"){
+                    $mode = $_REQUEST["hub_mode"];
+                    $challenge =$_REQUEST["hub_challege"];
+                    $verifytok = $_REQUEST["hub_verify_token"];
+                    if($mode && $challenge){
+                        if($mode == "subscribe" && $verifytok == tok){
+                            http_response_code(200);
+                            echo $challenge;
+                        }
+                    }
+                }
+                    $idGroup = "";
+                    $appId = "137891680219876";
                     $appSecret="c9c425abbaa9080145c8bacef16e82e4";
-                    define("tok","EAAB9aWid8uQBACNAlQa4z2fHqVuSZA7wsIiZCzdzxx7KYtPnYjVeT8LdqWWlxrgIUmRS4VZAAvdL0KE4KSDcnakCAHhgXVKjvxvcZApZBxasVI7zewCaGVKZBNymqsBE4DEkn2duRW4ZBbtNAqyCB5ZCBuRaNPEXIrdHeUdzdOZAI6AZDZD" );
+                    
+                    define("6520tok", "");
                     $fb = new \Facebook\Facebook([
                         'app_id'=> $appId,
                         'app_secret'=> $appSecret,
@@ -50,7 +53,7 @@ class WebhookVerify {
                 $data = $groupList['groups']['data'];
                 foreach($data as $group_data){
                     if($group_data["name"]== "TechSolve"){
-                        $idTest = $group_data["id"];
+                       $idGroup = $group_data["id"];
                     }
                 }
                 
@@ -99,7 +102,7 @@ class WebhookVerify {
                     }
                     //lists of mem retrieve
                     try{
-                        $response =$fb->get("/". $idTest. "/members", tok);
+                        $response =$fb->get("/".$idGroup. "/members", tok);
                     } catch(Facebook\Exceptions\FacebookResponseException $e){
                         echo ("error ".$e->getMessage());
                     }catch(Facebook\Exceptions\FacebookSDKException $e) {
