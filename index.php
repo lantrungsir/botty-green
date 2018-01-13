@@ -78,21 +78,6 @@ class REST {
                         echo $challenge;
                     }
                 }
-                echo $test;
-                $session = new \Facebook\FacebookSession('137891680219876|-6300_MN1Hu_Ag94Hg6kfjfevdo');
-                $request = new \Facebook\FacebookRequest(
-                $session,
-                'POST',
-                '/137891680219876/subscriptions',
-                array(
-                    'object' => 'page',
-                    'callback_url' => 'https://botty-green.herokuapp.com',
-                    'fields' => 'feed',
-                    'verify_token' => 'EAAB9aWid8uQBACNAlQa4z2fHqVuSZA7wsIiZCzdzxx7KYtPnYjVeT8LdqWWlxrgIUmRS4VZAAvdL0KE4KSDcnakCAHhgXVKjvxvcZApZBxasVI7zewCaGVKZBNymqsBE4DEkn2duRW4ZBbtNAqyCB5ZCBuRaNPEXIrdHeUdzdOZAI6AZDZD',
-                )
-                );
-                $response = $request->execute();
-                echo $response;
                 //$this->sendCommentChecking(tok,tok6520, "Tân và các thanh niên nghiêm túc");
                 break;
             case "PUT": break;
