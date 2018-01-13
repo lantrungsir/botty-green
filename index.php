@@ -25,7 +25,9 @@ class WebhookVerify {
         switch($this->method){
             case "POST" :
                 $postval = json_decode(file_get_contents("php://input"));
-                echo $postval;
+                foreach($postval as $field => $val){
+                    echo $field;
+                }
                 break;
             case "GET" : 
                 $mode = $_REQUEST["hub_mode"];
