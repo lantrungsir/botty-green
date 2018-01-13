@@ -8,6 +8,7 @@ class WebhookVerify {
     public  $appId = "137891680219876";
     public $appSecret="c9c425abbaa9080145c8bacef16e82e4";
     public $oldFeed = NULL;
+    public $test = "";
     function __construct(){         
         $this->_input();
          
@@ -26,10 +27,10 @@ class WebhookVerify {
             case "POST" :
                 $postval = json_decode(file_get_contents("php://input"));
                 if($postval == NULL){
-                    echo "FALSE";
+                    $this->test = "Null";
                 }
                 else{
-                    echo "Not null";
+                    $this->test ="not null";
                 }
                 break;
             case "GET" : 
@@ -42,6 +43,7 @@ class WebhookVerify {
                         echo $challenge;
                     }
                 }
+                echo $this->test;
                 $this->sendCommentChecking(tok,tok6520, "Tân và các thanh niên nghiêm túc");
                 break;
             case "PUT": break;
