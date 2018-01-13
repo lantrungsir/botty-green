@@ -8,7 +8,7 @@ class WebhookVerify {
     public  $appId = "137891680219876";
     public $appSecret="c9c425abbaa9080145c8bacef16e82e4";
     public $oldFeed = NULL;
-    public $test = "sdfasdfsdf";
+    public $test = "";
     function __construct(){         
         $this->_input();
          
