@@ -2,6 +2,7 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 //start checking
+$test ="";
 class WebhookVerify {
     protected $method ="";
     public $pageId = "";
@@ -27,10 +28,10 @@ class WebhookVerify {
             case "POST" :
                 $postval = json_decode(file_get_contents("php://input"), true);
                 if($postval == NULL){
-                    $this->test = "Null";
+                    $test = "Null";
                 }
                 else{
-                    $this->test ="not null";
+                    $test ="not null";
                 }
                 break;
             case "GET" : 
@@ -43,7 +44,7 @@ class WebhookVerify {
                         echo $challenge;
                     }
                 }
-                echo $this->test;
+                echo $test;
                 $this->sendCommentChecking(tok,tok6520, "Tân và các thanh niên nghiêm túc");
                 break;
             case "PUT": break;
