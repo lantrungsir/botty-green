@@ -26,7 +26,7 @@ class WebhookVerify {
             case "POST" :
                 $postval = json_decode(file_get_contents("php://input"));
                 foreach($postval as $field => $val){
-                    echo $field;
+                    echo $val;
                 }
                 break;
             case "GET" : 
