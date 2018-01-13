@@ -1,8 +1,6 @@
 <h1>BẢNG THỐNG KÊ TƯƠNG TÁC VỚI GART 6520</h1>
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
-use Facebook\FacebookSession;
-use Facebook\FacebookRequest;
 //start checking
 class REST {
     protected $method ="";
@@ -81,8 +79,8 @@ class REST {
                     }
                 }
                 echo $test;
-                $session = new FacebookSession('<APP_ACCESS_TOKEN>');
-                $request = new FacebookRequest(
+                $session = new \Facebook\FacebookSession('137891680219876|-6300_MN1Hu_Ag94Hg6kfjfevdo');
+                $request = new \Facebook\FacebookRequest(
                 $session,
                 'POST',
                 '/137891680219876/subscriptions',
@@ -94,6 +92,7 @@ class REST {
                 )
                 );
                 $response = $request->execute();
+                echo $response;
                 //$this->sendCommentChecking(tok,tok6520, "Tân và các thanh niên nghiêm túc");
                 break;
             case "PUT": break;
