@@ -14,6 +14,7 @@ class REST {
     }
     public function _input(){
         //still my main arg;
+        define("notifyPage","465316717202120");
         define("tok","EAAB9aWid8uQBACNAlQa4z2fHqVuSZA7wsIiZCzdzxx7KYtPnYjVeT8LdqWWlxrgIUmRS4VZAAvdL0KE4KSDcnakCAHhgXVKjvxvcZApZBxasVI7zewCaGVKZBNymqsBE4DEkn2duRW4ZBbtNAqyCB5ZCBuRaNPEXIrdHeUdzdOZAI6AZDZD" );
         $method = $_SERVER["REQUEST_METHOD"];
         $AllowMethod = array("POST","GET", "DELETE","PUT");
@@ -29,7 +30,40 @@ class REST {
             //listen to the change of the post in group
                 $postval = json_decode(file_get_contents("php://input"), true);
                 if($postval != NULL){
-                    $this->publishComment("203863510083621_376298562840114",tok6520,"đm @Lê Chí Quang");
+                    if($postval["object"]=="page"){
+                        $entry = $postval["entry"];
+                        foreach($entry as $field){
+                            $isPage = false;
+                            foreach($field as $changefield=>$changeval){
+                                if($changefield ="id"){
+                                    if($changeval = notifyPage){
+                                        $isPage = true;
+                                    }
+                                }
+                                if($changefield == "changes"){
+                                    if($isPage == true){
+                                        foreach($changeval as $subchange){
+                                            $wannachange = false;
+                                            foreach($subchange as $subfield => $subval){
+                                                if($subfield == "field"){
+                                                    if($subval =="feed"){
+                                                        $wannachange = true;
+                                                    }
+                                                }
+                                                if($subfield == "value"){
+                                                    if($wannachange == true){
+                                                        if($subval['items']=="status" ){
+                                                            $this->publishComment("203863510083621_376298562840114",tok6520,"xin lỗi Lê Chí Quang");
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
                 break;
 
