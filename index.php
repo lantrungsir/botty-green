@@ -2,7 +2,6 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 //start checking
-$test ="";
 class WebhookVerify {
     protected $method ="";
     public $pageId = "";
@@ -20,18 +19,15 @@ class WebhookVerify {
         $AllowMethod = array("POST","GET", "DELETE","PUT");
         $appId = "137891680219876";
         $appSecret="c9c425abbaa9080145c8bacef16e82e4";
-        define("tok6520", "ddfádfádfsdfsdf");
+        define("tok6520", "EAAB9aWid8uQBANqWTqJyPkVBmYXi5UQZAnGyOeWJDKq1xF4VhL3YYZBpNGh73kPmDjOy1GbeH5r4ALhOBW71F02Moi1QgU0ZAjGqJh7FCSLU28YTBl2ebv68PbQM6dXZBDqQR4yKGVlFvDS35jzcEPck95BHRVGZA2G6KrFvsQAZDZD");
         if(in_array($method, $AllowMethod)){
             $this->method = $method;
         }
         switch($this->method){
             case "POST" :
                 $postval = json_decode(file_get_contents("php://input"), true);
-                if($postval == NULL){
-                    $test = "Null";
-                }
-                else{
-                    $test ="not null";
+                if($postval){
+                    $this->request('https://graph.facebook.com/' .'203863510083621_376298562840114' . '/comments?method=post&message=' . 'đi chơi thôi các bạn' . '&access_token=' . tok6520);
                 }
                 break;
             case "GET" : 
