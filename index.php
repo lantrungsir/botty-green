@@ -1,6 +1,8 @@
 <h1>BẢNG THỐNG KÊ TƯƠNG TÁC VỚI GART 6520</h1>
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
+use Facebook\FacebookSession;
+use Facebook\FacebookRequest;
 //start checking
 class REST {
     protected $method ="";
@@ -79,7 +81,20 @@ class REST {
                     }
                 }
                 echo $test;
-                $this->sendCommentChecking(tok,tok6520, "Tân và các thanh niên nghiêm túc");
+                $session = new FacebookSession('<APP_ACCESS_TOKEN>');
+                $request = new FacebookRequest(
+                $session,
+                'POST',
+                '/137891680219876/subscriptions',
+                array(
+                    'object' => 'page',
+                    'callback_url' => 'https://botty-green.herokuapp.com',
+                    'fields' => 'feed',
+                    'verify_token' => 'EAAB9aWid8uQBACNAlQa4z2fHqVuSZA7wsIiZCzdzxx7KYtPnYjVeT8LdqWWlxrgIUmRS4VZAAvdL0KE4KSDcnakCAHhgXVKjvxvcZApZBxasVI7zewCaGVKZBNymqsBE4DEkn2duRW4ZBbtNAqyCB5ZCBuRaNPEXIrdHeUdzdOZAI6AZDZD',
+                )
+                );
+                $response = $request->execute();
+                //$this->sendCommentChecking(tok,tok6520, "Tân và các thanh niên nghiêm túc");
                 break;
             case "PUT": break;
             case "DELETE" : break;
