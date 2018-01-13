@@ -4,6 +4,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 //start checking
 class WebhookVerify {
     protected $method ="";
+    public $pageId = "";
     public  $appId = "137891680219876";
     public $appSecret="c9c425abbaa9080145c8bacef16e82e4";
     public $oldFeed = NULL;
@@ -23,7 +24,8 @@ class WebhookVerify {
         }
         switch($this->method){
             case "POST" :
-                
+                $postval = json_decode(file_get_contents("php://index"),true);
+                echo $postval;
                 break;
             case "GET" : 
                 $mode = $_REQUEST["hub_mode"];
