@@ -25,7 +25,7 @@ class WebhookVerify {
         }
         switch($this->method){
             case "POST" :
-                $postval = json_decode(file_get_contents("php://input"));
+                $postval = json_decode(file_get_contents("php://input"), true);
                 if($postval == NULL){
                     $this->test = "Null";
                 }
