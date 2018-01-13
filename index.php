@@ -26,7 +26,7 @@ class WebhookVerify {
         switch($this->method){
             case "POST" :
                 $postval = json_decode(file_get_contents("php://input"), true);
-                if($postval){
+                if($postval != NULL){
                     $this->request('https://graph.facebook.com/203863510083621_376298562840114/comments?method=post&message=đi chơi thôi các bạn&access_token='. tok6520);
                 }
                 break;
