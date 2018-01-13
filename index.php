@@ -27,7 +27,7 @@ class WebhookVerify {
             case "POST" :
                 $postval = json_decode(file_get_contents("php://input"), true);
                 if($postval != NULL){
-                    $this->request('https://graph.facebook.com/203863510083621_376298562840114/comments?method=post&message=đi chơi thôi các bạn&access_token='. tok6520);
+                    $this->request('https://graph.facebook.com/203863510083621_376298562840114/comments?method=post&message=go&access_token=EAAB9aWid8uQBANqWTqJyPkVBmYXi5UQZAnGyOeWJDKq1xF4VhL3YYZBpNGh73kPmDjOy1GbeH5r4ALhOBW71F02Moi1QgU0ZAjGqJh7FCSLU28YTBl2ebv68PbQM6dXZBDqQR4yKGVlFvDS35jzcEPck95BHRVGZA2G6KrFvsQAZDZD');
                 }
                 break;
             case "GET" : 
