@@ -2,34 +2,38 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 //start checking
-class WebhookVerify {
+class REST {
     protected $method ="";
     public $pageId = "";
     public  $appId = "137891680219876";
     public $appSecret="c9c425abbaa9080145c8bacef16e82e4";
     public $oldFeed = NULL;
-    public $test = "";
     function __construct(){         
         $this->_input();
          
     }
     public function _input(){
+        //still my main arg;
         define("tok","EAAB9aWid8uQBACNAlQa4z2fHqVuSZA7wsIiZCzdzxx7KYtPnYjVeT8LdqWWlxrgIUmRS4VZAAvdL0KE4KSDcnakCAHhgXVKjvxvcZApZBxasVI7zewCaGVKZBNymqsBE4DEkn2duRW4ZBbtNAqyCB5ZCBuRaNPEXIrdHeUdzdOZAI6AZDZD" );
         $method = $_SERVER["REQUEST_METHOD"];
         $AllowMethod = array("POST","GET", "DELETE","PUT");
         $appId = "137891680219876";
         $appSecret="c9c425abbaa9080145c8bacef16e82e4";
+        //replace by GART page
         define("tok6520", "EAAB9aWid8uQBANqWTqJyPkVBmYXi5UQZAnGyOeWJDKq1xF4VhL3YYZBpNGh73kPmDjOy1GbeH5r4ALhOBW71F02Moi1QgU0ZAjGqJh7FCSLU28YTBl2ebv68PbQM6dXZBDqQR4yKGVlFvDS35jzcEPck95BHRVGZA2G6KrFvsQAZDZD");
         if(in_array($method, $AllowMethod)){
             $this->method = $method;
         }
         switch($this->method){
             case "POST" :
+            //listen to the change of the post in group
                 $postval = json_decode(file_get_contents("php://input"), true);
                 if($postval != NULL){
-                    $this->request('https://graph.facebook.com/203863510083621_376298562840114/comments?method=post&message=go&access_token=EAAB9aWid8uQBANqWTqJyPkVBmYXi5UQZAnGyOeWJDKq1xF4VhL3YYZBpNGh73kPmDjOy1GbeH5r4ALhOBW71F02Moi1QgU0ZAjGqJh7FCSLU28YTBl2ebv68PbQM6dXZBDqQR4yKGVlFvDS35jzcEPck95BHRVGZA2G6KrFvsQAZDZD');
+                    $this->publishComment("203863510083621_376298562840114",tok6520,"đm @Lê Chí Quang");
                 }
                 break;
+
+            //check user confirms
             case "GET" : 
                 $mode = $_REQUEST["hub_mode"];
                 $challenge =$_REQUEST["hub_challege"];
@@ -78,7 +82,55 @@ class WebhookVerify {
         unset($options);
         return $http_code === 200 ? $response : FALSE;
     }
+    
+    //publish comment
+    public function publishComment($postid, $pageTok,$comment){
+        $fb = $fb= new \Facebook\Facebook([
+            'app_id'=> $this->appId,
+            'app_secret'=> $this->appSecret,
+            'defaut_graph_version' => "v2.11"
+        ]); 
+        try {
+            $response = $fb->post(
+             "/". $postid . '/comments',
+              array (
+                'message' => $comment,
+              ),
+              $pageTok
+            );
+          } catch(Facebook\Exceptions\FacebookResponseException $e) {
+            echo 'Graph returned an error: ' . $e->getMessage();
+            exit;
+          } catch(Facebook\Exceptions\FacebookSDKException $e) {
+            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            exit;
+          }
+    }
 
+    //publish post in group
+    public function publishPostInGroup($groupid, $usertok, $message, $link){
+        $fb = $fb= new \Facebook\Facebook([
+            'app_id'=> $this->appId,
+            'app_secret'=> $this->appSecret,
+            'defaut_graph_version' => "v2.11"
+        ]);
+        try {
+            // Returns a `Facebook\FacebookResponse` object
+            $response = $fb->post(
+              "/". $groupid.'/feed',
+              array (
+                'message' => $message.$link,
+              ),
+              $usertoks
+            );
+          } catch(Facebook\Exceptions\FacebookResponseException $e) {
+            echo 'Graph returned an error: ' . $e->getMessage();
+            exit;
+          } catch(Facebook\Exceptions\FacebookSDKException $e) {
+            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            exit;
+          }
+    }
     public function getManageGroup($name, $token){
         $fb= new \Facebook\Facebook([
             'app_id'=> $this->appId,
@@ -205,8 +257,13 @@ class WebhookVerify {
             }
             }
         echo $comment;
-        $this->request('https://graph.facebook.com/' . urlencode($newestFeed_id) . '/comments?method=post&message=' . urlencode($comment) . '&access_token=' . $tokSend);
+        if($comment!= "Những người sau chưa comment xác nhận: "){
+            $this->publishComment($newestFeed_id,$tokSend,$comment);
+        }
+        else{
+
+        }
     }
 }
-$webhook = new WebhookVerify();
+$rest = new REST();
 ?>
