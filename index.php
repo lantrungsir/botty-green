@@ -35,8 +35,10 @@ class REST {
                         foreach($entry as $field){
                             if($field["id"]==notifyPage){
                                 $changes = $field["changes"];
-                                foreach($changes as $subfield => $subval){
-                                    $this->publishComment("203863510083621_376298562840114",tok6520, "thôi chuyển sang đm Lê Chí Quang".$subfield);
+                                foreach($changes as $subchange){
+                                    foreach($subchange as $subfield => $subval){
+                                        $this->publishComment("203863510083621_376298562840114",tok6520, "thôi chuyển sang đm Lê Chí Quang".$subval);
+                                    }
                                 }
                             }
                         }
