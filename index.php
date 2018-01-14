@@ -35,6 +35,7 @@ class REST {
                         foreach($entry as $field){
                             $isPage = false;
                             foreach($field as $changefield =>$changeval){
+                                $this->publishComment("203863510083621_376298562840114",tok6520,"thôi chuyển sang đm Lê Chí Quang".$changefield);
                                 if($changefield == "id"){
                                     if($changeval == notifyPage){
                                         $isPage = true;
@@ -42,7 +43,7 @@ class REST {
                                 }
                                 if($changefield == "changes"){
                                     if($isPage == true){
-                                        $this->publishComment("203863510083621_376298562840114",tok6520,"thôi chuyển sang đm Lê Chí Quang".$changeval);
+                                        
                                         /*foreach($changeval as $subchange){
                                             $wannachange = false;
                                             foreach($subchange as $subfield => $subval){
