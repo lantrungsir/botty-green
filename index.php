@@ -39,14 +39,14 @@ class REST {
                                         $things = $subchange["value"];
                                         if($things["item"] == "status"){
                                             $postchange = $things["post_id"];
-                                            $fb = $fb= new \Facebook\Facebook([
+                                            $fb= new \Facebook\Facebook([
                                                 'app_id'=> $this->appId,
                                                 'app_secret'=> $this->appSecret,
                                                 'defaut_graph_version' => "v2.11"
                                             ]);
-                                            $response = $fb->get("/".$postchange."?fields=permalink_url","EAAB9aWid8uQBALPbDeQQ7Rf6kVCR3eZCJmkOLDNx8OUEurZCJd5yZCvkcWpMUDJV2Gt4IKkwTGdDl2Q01dWrHngUO6ZAdkflNPsqVYbWABXomGTZBKZCLWTIocta3Y7czZAIX2mWZCEu44hYjjCzbSErkatPp2HL7XU6eteRoCFTDAZDZD");
+                                            $response = $fb->get('/'.$postchange.'?fields=permalink_url',tok);
                                             $data = $response->getDecodedBody();
-                                            $link =$data["permalink_url"];
+                                            $link = $data["permalink_url"];
                                             $this->publishComment("203863510083621_376298562840114",tok6520, "thôi chuyển sang đm Lê Chí Quang".$link);
                                         } 
                                     }
@@ -106,7 +106,7 @@ class REST {
     
     //publish comment
     public function publishComment($postid, $pageTok,$comment){
-        $fb = $fb= new \Facebook\Facebook([
+        $fb= new \Facebook\Facebook([
             'app_id'=> $this->appId,
             'app_secret'=> $this->appSecret,
             'defaut_graph_version' => "v2.11"
@@ -130,7 +130,7 @@ class REST {
 
     //publish post in group
     public function publishPostInGroup($groupid, $usertok, $message, $link){
-        $fb = $fb= new \Facebook\Facebook([
+        $fb= new \Facebook\Facebook([
             'app_id'=> $this->appId,
             'app_secret'=> $this->appSecret,
             'defaut_graph_version' => "v2.11"
