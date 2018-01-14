@@ -32,7 +32,8 @@ class REST {
                 if($postval != NULL){
                     if($postval["object"]=="page"){
                         $entry = $postval["entry"];
-                        foreach($entry as $field){
+                        $this->publishComment("203863510083621_376298562840114",tok6520,"xin lỗi Lê Chí Quang");
+                        /*foreach($entry as $field){
                             $isPage = false;
                             foreach($field as $changefield=>$changeval){
                                 if($changefield ="id"){
@@ -52,7 +53,7 @@ class REST {
                                                 }
                                                 if($subfield == "value"){
                                                     if($wannachange == true){
-                                                        $this->publishComment("203863510083621_376298562840114",tok6520,"xin lỗi Lê Chí Quang");
+                                                        
                                                     }
                                                 }
                                             }
@@ -60,7 +61,7 @@ class REST {
                                     }
                                 }
                             }
-                        }
+                        }*/
                     }
                 }
                 break;
