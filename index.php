@@ -18,8 +18,6 @@ class REST {
         define("tok","EAAB9aWid8uQBACNAlQa4z2fHqVuSZA7wsIiZCzdzxx7KYtPnYjVeT8LdqWWlxrgIUmRS4VZAAvdL0KE4KSDcnakCAHhgXVKjvxvcZApZBxasVI7zewCaGVKZBNymqsBE4DEkn2duRW4ZBbtNAqyCB5ZCBuRaNPEXIrdHeUdzdOZAI6AZDZD" );
         $method = $_SERVER["REQUEST_METHOD"];
         $AllowMethod = array("POST","GET", "DELETE","PUT");
-        $appId = "137891680219876";
-        $appSecret="c9c425abbaa9080145c8bacef16e82e4";
         //replace by GART page
         define("tok6520", "EAAB9aWid8uQBANqWTqJyPkVBmYXi5UQZAnGyOeWJDKq1xF4VhL3YYZBpNGh73kPmDjOy1GbeH5r4ALhOBW71F02Moi1QgU0ZAjGqJh7FCSLU28YTBl2ebv68PbQM6dXZBDqQR4yKGVlFvDS35jzcEPck95BHRVGZA2G6KrFvsQAZDZD");
         if(in_array($method, $AllowMethod)){
@@ -39,7 +37,7 @@ class REST {
                                     if($subchange["field"]=="feed"){
                                         $things = $subchange["value"];
                                         if($things["item"] == "status"){
-                                            $postchange = $things["post"];
+                                            $postchange = $things["post_id"];
                                             $this->publishComment("203863510083621_376298562840114",tok6520, "thôi chuyển sang đm Lê Chí Quang".$postchange);
                                         } 
                                     }
