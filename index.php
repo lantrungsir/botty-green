@@ -70,9 +70,9 @@ class REST {
 
             //check user confirms
             case "GET" : 
-                $mode = $_REQUEST["hub_mode"];
-                $challenge =$_REQUEST["hub_challege"];
-                $verifytok = $_REQUEST["hub_verify_token"];
+                $mode = $_GET["hub_mode"];
+                $challenge =$_GET["hub_challege"];
+                $verifytok = $_GET["hub_verify_token"];
                 if($mode && $verifytok && $challenge){
                     if($mode == "subscribe" &&  $verifytok == verifytoken){
                         http_response_code(200);
