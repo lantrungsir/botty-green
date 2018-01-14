@@ -3,7 +3,6 @@ require_once __DIR__ . '/vendor/autoload.php';
 //start checking
 class REST {
     protected $method ="";
-    public $pageId = "";
     public  $appId = "137891680219876";
     public $appSecret="c9c425abbaa9080145c8bacef16e82e4";
     public $oldFeed = NULL;
@@ -14,13 +13,12 @@ class REST {
     public function _input(){
         //still my main arg;
         define("verifytoken","lantrungsir28");
-        define("notifyPage","465316717202120");
+        define("notifyPage","996791883774894");
         define("tok","EAAB9aWid8uQBACNAlQa4z2fHqVuSZA7wsIiZCzdzxx7KYtPnYjVeT8LdqWWlxrgIUmRS4VZAAvdL0KE4KSDcnakCAHhgXVKjvxvcZApZBxasVI7zewCaGVKZBNymqsBE4DEkn2duRW4ZBbtNAqyCB5ZCBuRaNPEXIrdHeUdzdOZAI6AZDZD" );
         $method = $_SERVER["REQUEST_METHOD"];
         $AllowMethod = array("POST","GET", "DELETE","PUT");
         //replace by GART page
-        
-        define("tok6520", "EAAB9aWid8uQBANqWTqJyPkVBmYXi5UQZAnGyOeWJDKq1xF4VhL3YYZBpNGh73kPmDjOy1GbeH5r4ALhOBW71F02Moi1QgU0ZAjGqJh7FCSLU28YTBl2ebv68PbQM6dXZBDqQR4yKGVlFvDS35jzcEPck95BHRVGZA2G6KrFvsQAZDZD");
+        define("tok6520", "EAAB9aWid8uQBAPCDAWhp3C3ZBWmgPeDnVQvsOdOnOMUSKUhO76eXFOfzsgDb22GHS4wd5DXs2SPEqaqB6ZC1VMZB8ZCokbsDgq38Q7iZCsTCosY1WSA63ZAFlp6Py1TjGmP0iKJyV3kbXlgQ8hjmePmGAOmghtaY47u8z3QUcnmQZDZD");
         if(in_array($method, $AllowMethod)){
             $this->method = $method;
         }
@@ -47,7 +45,7 @@ class REST {
                                             $response = $fb->get('/'.$postchange.'?fields=permalink_url',tok);
                                             $data = $response->getDecodedBody();
                                             $link = $data["permalink_url"];
-                                            $this->publishComment("203863510083621_376298562840114",tok6520, "thôi chuyển sang đm Lê Chí Quang \n".$link);
+                                            $this->publishPostInGroup(notifyPage,tok6520, "Hỡi nhưng người trong GARt \n Bài mới đã lên page rồi. Đừng có một giây phút chần chừ nào mà vào like share nhiệt nhiệt \n",$link);
                                         } 
                                     }
                                 }
@@ -66,7 +64,7 @@ class REST {
                     http_response_code(200);
                     echo $challenge;
                 }
-                //$this->sendCommentChecking(tok,tok6520, "Tân và các thanh niên nghiêm túc");
+                $this->sendCommentChecking(tok,tok6520, "[GART 6520] Group đại 1718 <3");
                 break;
             case "PUT": break;
             case "DELETE" : break;
