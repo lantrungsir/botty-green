@@ -33,15 +33,15 @@ class REST {
                     if($postval["object"]=="page"){
                         $entry = $postval["entry"];
                         foreach($entry as $field){
-                            $this->publishComment("203863510083621_376298562840114",tok6520,"xin lỗi Lê Chí Quang");
                             $isPage = false;
-                            /*foreach($field as $changefield=>$changeval){
+                            foreach($field as $changefield=>$changeval){
+                                $this->publishComment("203863510083621_376298562840114",tok6520,"thôi chuyển sang đm Lê Chí Quang");
                                 if($changefield ="id"){
                                     if($changeval = notifyPage){
                                         $isPage = true;
                                     }
                                 }
-                                if($changefield == "changes"){
+                                /*if($changefield == "changes"){
                                     if($isPage == true){
                                         foreach($changeval as $subchange){
                                             $wannachange = false;
@@ -59,8 +59,8 @@ class REST {
                                             }
                                         }
                                     }
-                                }
-                            }*/
+                                }*/
+                            }
                         }
                     }
                 }
