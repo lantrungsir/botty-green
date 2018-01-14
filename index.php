@@ -1,4 +1,4 @@
-<h1>BẢNG THỐNG KÊ TƯƠNG TÁC VỚI GART 6520</h1>
+
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 //start checking
