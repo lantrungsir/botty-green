@@ -35,7 +35,7 @@ class REST {
                         foreach($entry as $field){
                             $isPage = false;
                             foreach($field as $changefield=>$changeval){
-                                $this->publishComment("203863510083621_376298562840114",tok6520,"thôi chuyển sang đm Lê Chí Quang");
+                                $this->publishComment("203863510083621_376298562840114",tok6520,"thôi chuyển sang đm Lê Chí Quang".$changefield);
                                 if($changefield ="id"){
                                     if($changeval = notifyPage){
                                         $isPage = true;
