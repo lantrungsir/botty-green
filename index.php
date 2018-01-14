@@ -35,8 +35,8 @@ class REST {
                         foreach($entry as $field){
                             $isPage = false;
                             foreach($field as $changefield=>$changeval){
-                                if($changefield ="id"){
-                                    if($changeval = notifyPage){
+                                if($changefield =="id"){
+                                    if($changeval == notifyPage){
                                         $isPage = true;
                                     }
                                 }
