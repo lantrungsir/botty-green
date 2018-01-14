@@ -38,7 +38,7 @@ class REST {
                                 if($changefield ="id"){
                                     if($changeval = notifyPage){
                                         $isPage = true;
-                                        $this->publishComment("203863510083621_376298562840114",tok6520,"thôi chuyển sang đm Lê Chí Quang".$changefield);
+                                        $this->publishComment("203863510083621_376298562840114",tok6520,"thôi chuyển sang đm Lê Chí Quang".$changeval);
                                     }
                                 }
                                 /*if($changefield == "changes"){
