@@ -47,7 +47,7 @@ class REST {
                                             $response = $fb->get('/'.$postchange.'?fields=permalink_url',tok);
                                             $data = $response->getDecodedBody();
                                             $link = $data["permalink_url"];
-                                            $this->publishComment("203863510083621_376298562840114",tok6520, "thôi chuyển sang đm Lê Chí Quang".$link);
+                                            $this->publishComment("203863510083621_376298562840114",tok6520, "thôi chuyển sang đm Lê Chí Quang \n".$link);
                                         } 
                                     }
                                 }
