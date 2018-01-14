@@ -14,6 +14,7 @@ class REST {
     }
     public function _input(){
         //still my main arg;
+        define("verify_token","lantrungsir28");
         define("notifyPage","465316717202120");
         define("tok","EAAB9aWid8uQBACNAlQa4z2fHqVuSZA7wsIiZCzdzxx7KYtPnYjVeT8LdqWWlxrgIUmRS4VZAAvdL0KE4KSDcnakCAHhgXVKjvxvcZApZBxasVI7zewCaGVKZBNymqsBE4DEkn2duRW4ZBbtNAqyCB5ZCBuRaNPEXIrdHeUdzdOZAI6AZDZD" );
         $method = $_SERVER["REQUEST_METHOD"];
@@ -73,7 +74,7 @@ class REST {
                 $challenge =$_REQUEST["hub_challege"];
                 $verifytok = $_REQUEST["hub_verify_token"];
                 if($mode && $challenge){
-                    if($mode == "subscribe" && $verifytok == tok){
+                    if($mode == "subscribe" && $verifytok == verify_token){
                         http_response_code(200);
                         echo $challenge;
                     }
