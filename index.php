@@ -34,8 +34,8 @@ class REST {
                         $entry = $postval["entry"];
                         foreach($entry as $field){
                             $isPage = false;
-                            foreach($field as $changefield=>$changeval){
-                                if($changefield =="id"){
+                            foreach($field as $changefield =>$changeval){
+                                if($changefield == "id"){
                                     if($changeval == notifyPage){
                                         $isPage = true;
                                     }
