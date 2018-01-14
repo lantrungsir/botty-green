@@ -72,11 +72,9 @@ class REST {
                 $mode = $_GET["hub_mode"];
                 $challenge =$_GET["hub_challege"];
                 $verifytok = $_GET["hub_verify_token"];
-                if($mode && $verifytok && $challenge){
-                    if($mode == "subscribe" &&  $verifytok == verifytoken){
-                        http_response_code(200);
-                        echo $challenge;
-                    }
+                if($mode == "subscribe" &&  $verifytok == verifytoken){
+                    http_response_code(200);
+                    echo $challenge;
                 }
                 //$this->sendCommentChecking(tok,tok6520, "Tân và các thanh niên nghiêm túc");
                 break;
