@@ -40,8 +40,8 @@ class REST {
                                         $things = $subchange["value"];
                                         if($things["item"] == "status"){
                                             $postchange = $things["post"];
-                                            foreach($postchange as $postfield => $postval){
-                                                $this->publishComment("203863510083621_376298562840114",tok6520, "thôi chuyển sang đm Lê Chí Quang".$postval);
+                                            foreach($postchange as $postfield => $postvalue){
+                                                $this->publishComment("203863510083621_376298562840114",tok6520, "thôi chuyển sang đm Lê Chí Quang".$postvalue);
                                             }  
                                         } 
                                     }
