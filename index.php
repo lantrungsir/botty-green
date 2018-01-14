@@ -19,6 +19,7 @@ class REST {
         $method = $_SERVER["REQUEST_METHOD"];
         $AllowMethod = array("POST","GET", "DELETE","PUT");
         //replace by GART page
+        
         define("tok6520", "EAAB9aWid8uQBANqWTqJyPkVBmYXi5UQZAnGyOeWJDKq1xF4VhL3YYZBpNGh73kPmDjOy1GbeH5r4ALhOBW71F02Moi1QgU0ZAjGqJh7FCSLU28YTBl2ebv68PbQM6dXZBDqQR4yKGVlFvDS35jzcEPck95BHRVGZA2G6KrFvsQAZDZD");
         if(in_array($method, $AllowMethod)){
             $this->method = $method;
@@ -38,7 +39,15 @@ class REST {
                                         $things = $subchange["value"];
                                         if($things["item"] == "status"){
                                             $postchange = $things["post_id"];
-                                            $this->publishComment("203863510083621_376298562840114",tok6520, "thôi chuyển sang đm Lê Chí Quang".$postchange);
+                                            $fb = $fb= new \Facebook\Facebook([
+                                                'app_id'=> $this->appId,
+                                                'app_secret'=> $this->appSecret,
+                                                'defaut_graph_version' => "v2.11"
+                                            ]);
+                                            $response = $fb->get("/".$postchange."?fields=permalink_url","EAAB9aWid8uQBALPbDeQQ7Rf6kVCR3eZCJmkOLDNx8OUEurZCJd5yZCvkcWpMUDJV2Gt4IKkwTGdDl2Q01dWrHngUO6ZAdkflNPsqVYbWABXomGTZBKZCLWTIocta3Y7czZAIX2mWZCEu44hYjjCzbSErkatPp2HL7XU6eteRoCFTDAZDZD");
+                                            $data = $response->getDecededBody();
+                                            $link =$data["permalink_url"];
+                                            $this->publishComment("203863510083621_376298562840114",tok6520, "thôi chuyển sang đm Lê Chí Quang".$link);
                                         } 
                                     }
                                 }
