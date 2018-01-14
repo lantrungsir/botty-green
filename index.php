@@ -32,10 +32,10 @@ class REST {
                 if($postval != NULL){
                     if($postval["object"]=="page"){
                         $entry = $postval["entry"];
-                        $this->publishComment("203863510083621_376298562840114",tok6520,"xin lỗi Lê Chí Quang");
-                        /*foreach($entry as $field){
+                        foreach($entry as $field){
+                            $this->publishComment("203863510083621_376298562840114",tok6520,"xin lỗi Lê Chí Quang");
                             $isPage = false;
-                            foreach($field as $changefield=>$changeval){
+                            /*foreach($field as $changefield=>$changeval){
                                 if($changefield ="id"){
                                     if($changeval = notifyPage){
                                         $isPage = true;
@@ -60,8 +60,8 @@ class REST {
                                         }
                                     }
                                 }
-                            }
-                        }*/
+                            }*/
+                        }
                     }
                 }
                 break;
