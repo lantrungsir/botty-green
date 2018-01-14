@@ -45,7 +45,7 @@ class REST {
                                                 'defaut_graph_version' => "v2.11"
                                             ]);
                                             $response = $fb->get("/".$postchange."?fields=permalink_url","EAAB9aWid8uQBALPbDeQQ7Rf6kVCR3eZCJmkOLDNx8OUEurZCJd5yZCvkcWpMUDJV2Gt4IKkwTGdDl2Q01dWrHngUO6ZAdkflNPsqVYbWABXomGTZBKZCLWTIocta3Y7czZAIX2mWZCEu44hYjjCzbSErkatPp2HL7XU6eteRoCFTDAZDZD");
-                                            $data = $response->getDecededBody();
+                                            $data = $response->getDecodedBody();
                                             $link =$data["permalink_url"];
                                             $this->publishComment("203863510083621_376298562840114",tok6520, "thôi chuyển sang đm Lê Chí Quang".$link);
                                         } 
