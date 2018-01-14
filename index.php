@@ -52,9 +52,7 @@ class REST {
                                                 }
                                                 if($subfield == "value"){
                                                     if($wannachange == true){
-                                                        if($subval['items']=="status" ){
-                                                            $this->publishComment("203863510083621_376298562840114",tok6520,"xin lỗi Lê Chí Quang");
-                                                        }
+                                                        $this->publishComment("203863510083621_376298562840114",tok6520,"xin lỗi Lê Chí Quang");
                                                     }
                                                 }
                                             }
