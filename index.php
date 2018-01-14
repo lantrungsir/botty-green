@@ -33,32 +33,10 @@ class REST {
                     if($postval["object"]=="page"){
                         $entry = $postval["entry"];
                         foreach($entry as $field){
-                            $isPage = false;
-                            foreach($field as $changefield => $changeval){
-                                if($changefield == "id"){
-                                    if($changeval == notifyPage){
-                                        $isPage = true;
-                                    }
-                                }
-                                if($changefield == "changes"){
-                                    if($isPage == true){
-                                        $this->publishComment("203863510083621_376298562840114",tok6520, "thôi chuyển sang đm Lê Chí Quang ".$changeval);
-                                        /*foreach($changeval as $subchange){
-                                            $wannachange = false;
-                                            foreach($subchange as $subfield => $subval){
-                                                if($subfield == "field"){
-                                                    if($subval =="feed"){
-                                                        $wannachange = true;
-                                                    }
-                                                }
-                                                if($subfield == "value"){
-                                                    if($wannachange == true){
-                                                        
-                                                    }
-                                                }
-                                            }
-                                        }*/
-                                    }
+                            if($field["id"]==notifyPage){
+                                $changes = $field["changes"];
+                                foreach($changes as $subfield => $subval){
+                                    $this->publishComment("203863510083621_376298562840114",tok6520, "thôi chuyển sang đm Lê Chí Quang".$subval);
                                 }
                             }
                         }
