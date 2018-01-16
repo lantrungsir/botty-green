@@ -45,7 +45,7 @@ class REST {
                                             $response = $fb->get('/'.$postchange.'?fields=permalink_url',tok);
                                             $data = $response->getDecodedBody();
                                             $link = $data["permalink_url"];
-                                            $this->publishPostInGroup(notifyPage,tok6520, "Hỡi nhưng người trong GARt \n Bài mới đã lên page rồi. Đừng có một giây phút chần chừ nào mà vào like share nhiệt nhiệt \n",$link);
+                                            $this->publishPostInGroup(notifyPage,tok6520, "[NHIỆM VỤ] \n Bài mới đã lên page rồi. Đừng có một giây phút chần chừ nào mà vào like share nhiệt nhiệt \n",$link);
                                         } 
                                     }
                                 }
@@ -64,7 +64,13 @@ class REST {
                     http_response_code(200);
                     echo $challenge;
                 }
-                $this->sendCommentChecking(tok,tok6520, "[GART 6520] Group đại 1718 <3");
+
+                if($_GET["idle"]=="no"){
+
+                }
+                if(!isset($_GET["idle"])){
+                    $this->sendCommentChecking(tok,tok6520, "[GART 6520] Group đại 1718 <3");
+                }
                 break;
             case "PUT": break;
             case "DELETE" : break;
@@ -252,36 +258,55 @@ class REST {
         $newestFeed_id = $this->oldFeed;
        
         $commentedUsers = array();
-        $list_comments = $this->getCommentList($newestFeed_id,$tokReceive);
-        foreach($list_comments as $comment){
-            foreach($comment as $field => $value){
-                if($field == "from"){
-                    foreach($value as $user_field => $user_val){
-                        if($user_field == "id"){
-                                array_push($commentedUsers, $user_val);
-                        }
-                    }     
+        //check post need
+        $fb= new \Facebook\Facebook([
+            'app_id'=> $this->appId,
+            'app_secret'=> $this->appSecret,
+            'defaut_graph_version' => "v2.11"
+        ]);  
+        try{
+            $response =$fb->get("/". $postid."?fields=message", $token);
+        } catch(Facebook\Exceptions\FacebookResponseException $e){
+            echo ("error ". $e->getMessage());
+        }catch(Facebook\Exceptions\FacebookSDKException $e) {
+            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+            exit;
+        }
+        $newestPost = $response->getDecodedBody();
+        $messagePost = $newestPost["message"];
+        if(strpos($messagePost, "YÊU CẦU CONFIRM")!= FALSE){
+            $list_comments = $this->getCommentList($newestFeed_id,$tokReceive);
+            foreach($list_comments as $comment){
+                foreach($comment as $field => $value){
+                    if($field == "from"){
+                        foreach($value as $user_field => $user_val){
+                            if($user_field == "id"){
+                                    array_push($commentedUsers, $user_val);
+                            }
+                        }     
+                    }
                 }
             }
-        }
-        $memlist = $this->getMemList($idGroup,$tokReceive);
-        $comment = "Những người sau chưa comment xác nhận: ";
-        foreach($memlist as $mem){
-            $is_conf = false;
-            if(in_array($mem["id"], $commentedUsers)){
+            $memlist = $this->getMemList($idGroup,$tokReceive);
+            $comment = "Những người sau chưa comment xác nhận: ";
+            foreach($memlist as $mem){
+                $is_conf = false;
+                if(in_array($mem["id"], $commentedUsers)){
 
-            } 
+                } 
+                else{
+                    $comment .= "@".$mem["name"].",";
+                }
+                }
+            echo $comment;
+            if($comment!= "Những người sau chưa comment xác nhận: "){
+
+                $this->publishComment($newestFeed_id,$tokSend,$comment);
+            }
             else{
-                $comment .= "@".$mem["name"].",";
-            }
-            }
-        echo $comment;
-        if($comment!= "Những người sau chưa comment xác nhận: "){
-            $this->publishComment($newestFeed_id,$tokSend,$comment);
-        }
-        else{
 
-        }
+            }
+        }    
     }
 }
 $rest = new REST();
