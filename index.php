@@ -265,7 +265,7 @@ class REST {
             'defaut_graph_version' => "v2.11"
         ]);  
         try{
-            $response =$fb->get("/". $postid."?fields=message", $token);
+            $response =$fb->get("/". $postid."?fields=message", $tokReceive);
         } catch(Facebook\Exceptions\FacebookResponseException $e){
             echo ("error ". $e->getMessage());
         }catch(Facebook\Exceptions\FacebookSDKException $e) {
