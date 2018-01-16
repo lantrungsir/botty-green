@@ -45,7 +45,7 @@ class REST {
                                             $response = $fb->get('/'.$postchange.'?fields=permalink_url',tok);
                                             $data = $response->getDecodedBody();
                                             $link = $data["permalink_url"];
-                                            $this->publishPostInGroup(notifyPage,tok6520, "[NHIỆM VỤ] \n Bài mới đã lên page rồi. Đừng có một giây phút chần chừ nào mà vào like share nhiệt nhiệt \n",$link);
+                                            $this->publishPostInGroup("336159703511879",tok6520, "[NHIỆM VỤ] \n Bài mới đã lên page rồi. Đừng có một giây phút chần chừ nào mà vào like share nhiệt nhiệt \n",$link);
                                         } 
                                     }
                                 }
@@ -274,7 +274,7 @@ class REST {
         }
         $newestPost = $response->getDecodedBody();
         $messagePost = $newestPost["message"];
-        if(strpos($messagePost, "YÊU CẦU CONFIRM")!= FALSE){
+        if(strpos($messagePost, "YÊU CẦU CONFIRM") != FALSE){
             $list_comments = $this->getCommentList($newestFeed_id,$tokReceive);
             foreach($list_comments as $comment){
                 foreach($comment as $field => $value){
