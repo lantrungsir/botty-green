@@ -14,7 +14,7 @@ class REST {
         //still my main arg;
         define("verifytoken","lantrungsir28");
         define("notifyPage","996791883774894");
-        define("tok","EAAB9aWid8uQBACNAlQa4z2fHqVuSZA7wsIiZCzdzxx7KYtPnYjVeT8LdqWWlxrgIUmRS4VZAAvdL0KE4KSDcnakCAHhgXVKjvxvcZApZBxasVI7zewCaGVKZBNymqsBE4DEkn2duRW4ZBbtNAqyCB5ZCBuRaNPEXIrdHeUdzdOZAI6AZDZD" );
+        define("tok","EAAB9aWid8uQBACypJnWH7LAqmEdgkOZCNQxpExZAS7ZAqY2AKINqoXTkaOlrJHonVyjT3vjUr4tdbZCwoFyvzqlWFES0ccvZA5ZB3XsozhpwGqKFVe4Rik7iX7qHfkJJJJGWdsIA7OJytNPkEpSSLeZCFYROh3ZAdsoOTyvZC8Vi1oQZDZD" );
         $method = $_SERVER["REQUEST_METHOD"];
         $AllowMethod = array("POST","GET", "DELETE","PUT");
         //replace by GART page
