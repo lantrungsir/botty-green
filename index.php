@@ -45,7 +45,7 @@ class REST {
                                             $response = $fb->get('/'.$postchange.'?fields=permalink_url',tok);
                                             $data = $response->getDecodedBody();
                                             $link = $data["permalink_url"];
-                                            $this->publishPostInGroup("336159703511879",tok6520, "[NHIỆM VỤ] \n Bài mới đã lên page rồi. Đừng có một giây phút chần chừ nào mà vào like share nhiệt nhiệt \n",$link);
+                                            $this->publishPostInGroup("336159703511879",tok, "[NHIỆM VỤ] \n Bài mới đã lên page rồi. Đừng có một giây phút chần chừ nào mà vào like share nhiệt nhiệt \n",$link);
                                         } 
                                     }
                                 }
@@ -146,7 +146,7 @@ class REST {
               array (
                 'message' => $message.$link,
               ),
-              $usertoks
+              $usertok
             );
           } catch(Facebook\Exceptions\FacebookResponseException $e) {
             echo 'Graph returned an error: ' . $e->getMessage();
