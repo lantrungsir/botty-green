@@ -3,8 +3,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 //start checking
 class REST {
     protected $method ="";
-    public  $appId = "137891680219876";
-    public $appSecret="c9c425abbaa9080145c8bacef16e82e4";
+    public  $appId = "<facebook-app-id>";
+    public $appSecret="<facebook-app-secret>";
     public $oldFeed = NULL;
     function __construct(){         
         $this->_input();
