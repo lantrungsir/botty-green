@@ -12,13 +12,13 @@ class REST {
     }
     public function _input(){
         //still my main arg;
-        define("verifytoken","lantrungsir28");
-        define("notifyPage","996791883774894");
-        define("tok","EAAB9aWid8uQBACypJnWH7LAqmEdgkOZCNQxpExZAS7ZAqY2AKINqoXTkaOlrJHonVyjT3vjUr4tdbZCwoFyvzqlWFES0ccvZA5ZB3XsozhpwGqKFVe4Rik7iX7qHfkJJJJGWdsIA7OJytNPkEpSSLeZCFYROh3ZAdsoOTyvZC8Vi1oQZDZD" );
+        define("verifytoken","<your-verify-token>");
+        define("notifyPage","<page-id>");
+        define("tok","<token>" );
         $method = $_SERVER["REQUEST_METHOD"];
         $AllowMethod = array("POST","GET", "DELETE","PUT");
         //replace by GART page
-        define("tok6520", "EAAB9aWid8uQBAPCDAWhp3C3ZBWmgPeDnVQvsOdOnOMUSKUhO76eXFOfzsgDb22GHS4wd5DXs2SPEqaqB6ZC1VMZB8ZCokbsDgq38Q7iZCsTCosY1WSA63ZAFlp6Py1TjGmP0iKJyV3kbXlgQ8hjmePmGAOmghtaY47u8z3QUcnmQZDZD");
+        define("tok6520", "page-token");
         if(in_array($method, $AllowMethod)){
             $this->method = $method;
         }
@@ -45,7 +45,7 @@ class REST {
                                             $response = $fb->get('/'.$postchange.'?fields=permalink_url',tok);
                                             $data = $response->getDecodedBody();
                                             $link = $data["permalink_url"];
-                                            $this->publishPostInGroup("336159703511879",tok, "[NHIỆM VỤ] \n Bài mới đã lên page rồi. Đừng có một giây phút chần chừ nào mà vào like share nhiệt nhiệt \n",$link);
+                                            $this->publishPostInGroup("<group-token>",tok, "[NHIỆM VỤ] \n Bài mới đã lên page rồi. Đừng có một giây phút chần chừ nào mà vào like share nhiệt nhiệt \n",$link);
                                         } 
                                     }
                                 }
